@@ -18,7 +18,7 @@
                                 <div class="col-xl-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>Текущие клиенты</h5>
+                                            <h5>Действующие должники</h5>
                                         </div>
                                         <div class="card-block table-border-style">
                                             <div class="table-responsive">
@@ -28,10 +28,11 @@
                                                             <th>#</th>
                                                             <th>Название</th>
                                                             <th>ИНН</th>
-                                                            <th>Телефон</th>
+                                                            <th>Общая сумма долга</th>
                                                             <th>email</th>
-                                                            <th>Система Налогообложения</th>
+                                                            <th>Телефон</th>
                                                             <th>Действие</th>
+                                                            <th></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -39,28 +40,32 @@
                                                             <th scope="row">1</th>
                                                             <td>ООО Ромашка</td>
                                                             <td>63475236534</td>
-                                                            <td>788898887</td>
+                                                            <td>15000</td>
                                                             <td>mail@mail.ru</td>
-                                                            <td>УСН</td>
-                                                            <td><button type="button" class="btn btn-outline-success" title="btn btn-outline-success" data-toggle="tooltip">ПОЗВОНИТЬ</button></td>
+                                                            <td>345987634</td>
+                                                            <td><button type="button" class="btn btn-square" title="Нажмите, что бы открыть полную карточку" data-toggle="modal" data-target=".bd-example-modal-lg">ПОДРОБНЕЕ</button></td>
+                                                            <td><button type="button" class="btn btn-outline-success" title="Если клиент не ответит на звонок, система автоматически позвонит на следующий номер" data-toggle="tooltip">ПОЗВОНИТЬ</button></td>
+
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">2</th>
                                                             <td>ООО Ромашка</td>
                                                             <td>87348763497</td>
-                                                            <td>788898887</td>
+                                                            <td>12000</td>
                                                             <td>mail@mail.ru</td>
-                                                            <td>УСН</td>
-                                                            <td><button type="button" class="btn btn-outline-success" title="btn btn-outline-success" data-toggle="tooltip">ПОЗВОНИТЬ</button></td>
+                                                            <td>345987634</td>
+                                                            <td><button type="button" class="btn btn-square" title="Нажмите, что бы открыть полную карточку" data-toggle="modal" data-target=".bd-example-modal-lg">ПОДРОБНЕЕ</button></td>
+                                                            <td><button type="button" class="btn btn-outline-success" title="Если клиент не ответит на звонок, система автоматически позвонит на следующий номер" data-toggle="tooltip">ПОЗВОНИТЬ</button></td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">3</th>
                                                             <td>ООО Ромашка</td>
                                                             <td>783486236</td>
-                                                            <td>788898887</td>
+                                                            <td>13000</td>
                                                             <td>mail@mail.ru</td>
-                                                            <td>УСН</td>
-                                                            <td><button type="button" class="btn btn-outline-success" title="btn btn-outline-success" data-toggle="tooltip">ПОЗВОНИТЬ</button></td>
+                                                            <td>345987634</td>
+                                                            <td><button type="button" class="btn btn-square" title="Нажмите, что бы открыть полную карточку" data-toggle="modal" data-target=".bd-example-modal-lg">ПОДРОБНЕЕ</button></td>
+                                                            <td><button type="button" class="btn btn-outline-success" title="Если клиент не ответит на звонок, система автоматически позвонит на следующий номер" data-toggle="tooltip">ПОЗВОНИТЬ</button></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -69,6 +74,17 @@
                                     </div>
                                 </div>
                                 <!-- [ Hover-table ] end -->
+
+                                <!-- Large modal -->
+                                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          Тут формируется карточка клиента. Передается информация о долге которая тянется из базы данных
+                                        </div>
+                                      </div>
+                                    </div>
+                                <!-- Large modal end -->
+
                             </div>
                             <!-- [ Main Content ] end -->
                         </div>

@@ -21,6 +21,7 @@
                                     <div class="card">
                                         <div class="card-header">
                                             <h5>Текущие клиенты</h5>
+                                            <button type="button" class="btn btn-square btn-info float-right"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Добавить</button>
                                         </div>
                                         <div class="card-block table-border-style">
                                             <div class="table-responsive">
@@ -33,7 +34,8 @@
                                                             <th>Телефон</th>
                                                             <th>email</th>
                                                             <th>Система Налогообложения</th>
-                                                            <th>Действие</th>
+                                                            <th></th>
+                                                            <th></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -44,7 +46,8 @@
                                                             <td>788898887</td>
                                                             <td>mail@mail.ru</td>
                                                             <td>УСН</td>
-                                                            <td><button type="button" class="btn btn-outline-success" title="btn btn-outline-success" data-toggle="tooltip">ПОЗВОНИТЬ</button></td>
+                                                            <td><button type="button" class="btn btn-square float-right" title="Нажмите, что бы открыть полную карточку" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-question" aria-hidden="true"></i>ПОДРОБНЕЕ</button></td>
+                                                            <td><button type="button" class="btn btn-outline-success float-right" title="Если клиент не ответит на звонок, система автоматически позвонит на следующий номер" data-toggle="tooltip"> <i class="fa fa-phone" aria-hidden="true"></i>ПОЗВОНИТЬ</button></td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">2</th>
@@ -53,7 +56,8 @@
                                                             <td>788898887</td>
                                                             <td>mail@mail.ru</td>
                                                             <td>УСН</td>
-                                                            <td><button type="button" class="btn btn-outline-success" title="btn btn-outline-success" data-toggle="tooltip">ПОЗВОНИТЬ</button></td>
+                                                            <td><button type="button" class="btn btn-square float-right" title="Нажмите, что бы открыть полную карточку" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-question" aria-hidden="true"></i>ПОДРОБНЕЕ</button></td>
+                                                            <td><button type="button" class="btn btn-outline-success float-right" title="Если клиент не ответит на звонок, система автоматически позвонит на следующий номер" data-toggle="tooltip"><i class="fa fa-phone" aria-hidden="true"></i>ПОЗВОНИТЬ</button></td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">3</th>
@@ -62,7 +66,8 @@
                                                             <td>788898887</td>
                                                             <td>mail@mail.ru</td>
                                                             <td>УСН</td>
-                                                            <td><button type="button" class="btn btn-outline-success" title="btn btn-outline-success" data-toggle="tooltip">ПОЗВОНИТЬ</button></td>
+                                                            <td><button type="button" class="btn btn-square float-right" title="Нажмите, что бы открыть полную карточку" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-question" aria-hidden="true"></i>ПОДРОБНЕЕ</button></td>
+                                                            <td><button type="button" class="btn btn-outline-success float-right" title="Если клиент не ответит на звонок, система автоматически позвонит на следующий номер" data-toggle="tooltip"><i class="fa fa-phone" aria-hidden="true"></i>ПОЗВОНИТЬ</button></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -71,6 +76,15 @@
                                     </div>
                                 </div>
                                 <!-- [ Hover-table ] end -->
+                                <!-- Large modal -->
+                                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          Тут формируется карточка клиента. Передается информация о клиенте которая тянется из базы данных
+                                        </div>
+                                      </div>
+                                    </div>
+                                <!-- Large modal end -->
                             </div>
                             <!-- [ Main Content ] end -->
                         </div>
