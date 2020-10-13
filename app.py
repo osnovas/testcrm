@@ -72,13 +72,16 @@ def login():
         return render_template('login.html')
 
 
-
-
 @app.route('/logout',methods=['GET','POST'])
 @login_required
 def logout():
     logout_user()
     return redirect(url_for("login"))
+
+@app.route('/main-lead-append', methods=['GET', 'POST'])
+@login_required
+def main_lead_append():
+    return render_template("main-lead-append.html")
 
 
 @app.route("/main")
