@@ -52,6 +52,8 @@ def register():
     else:
         return render_template('/register.html')
 
+#тут пишем роуты
+
 @app.route('/', methods=['GET','POST'])
 def login():
     login = request.form.get('login')
