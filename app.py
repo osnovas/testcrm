@@ -89,6 +89,11 @@ def main_lead_append():
 def index():
     return render_template("main.html")
 
+@app.route('/debitor', methods=['GET', 'POST'])
+@login_required
+def debitor():
+    return render_template("debitor.html")
+
 
 @app.route('/workspace', methods=["GET", "POST"])
 @login_required
