@@ -19,6 +19,7 @@
                                     <div class="card">
                                         <div class="card-header">
                                             <h5>Действующие должники</h5>
+                                            <button type="button" class="btn btn-square btn-info float-right" data-toggle="modal" data-target=".append_debitor"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Добавить</button>
                                         </div>
                                         <div class="card-block table-border-style">
                                             <div class="table-responsive">
@@ -76,14 +77,9 @@
                                 <!-- [ Hover-table ] end -->
 
                                 <!-- Large modal -->
-                                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                      <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                          Тут формируется карточка клиента. Передается информация о долге которая тянется из базы данных
-                                        </div>
-                                      </div>
-                                    </div>
+
                                 <!-- Large modal end -->
+
 
                             </div>
                             <!-- [ Main Content ] end -->
@@ -94,4 +90,38 @@
         </div>
     </div>
     <!-- [ Main Content ] end -->
+
+<!-- Форма добавления должника-->
+                                    <div class="modal fade append_debitor" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                         <div class="col-md-10">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <label>Text</label>
+                                                            <input type="text" class="form-control" placeholder="Text">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlSelect1">Example select</label>
+                                                            <select class="form-control" id="exampleFormControlSelect1">
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlTextarea1">Example textarea</label>
+                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+
+<!-- Форма добавления должника END-->
+
 {% endblock %}

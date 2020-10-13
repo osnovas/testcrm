@@ -555,6 +555,9 @@ p.text-muted {
 }
 
 /* Modal */
+
+/* Мой код*/
+
 .datta-example-modal {
   position: fixed;
   z-index: 1099;
