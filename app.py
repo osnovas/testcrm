@@ -27,24 +27,7 @@ def load_user(user_id):
 
 
 
-@app.route('/', methods=['GET','POST'])
-def login():
-    login = request.form.get('login')
-    password = request.form.get('password')
-    if login and password:
-        user = User.query.filter_by(login=login).first()
-
-        if check_password_hash(user.password, password):
-            login_user(user)
-            #next_page = request.args.get('next')
-            return redirect("/main")
-        else:
-            flash("Логин или пароль не корректные")
-    else:
-        flash("Введите логин и пароль")
-        return render_template('login.html')
-
-
+#регистрация нового пользователя
 @app.route("/register", methods=["POST", "GET"])
 def register():
     name = request.form.get("name")
@@ -68,6 +51,25 @@ def register():
                 flash("Ошибка")
     else:
         return render_template('/register.html')
+
+@app.route('/', methods=['GET','POST'])
+def login():
+    login = request.form.get('login')
+    password = request.form.get('password')
+    if login and password:
+        user = User.query.filter_by(login=login).first()
+
+        if check_password_hash(user.password, password):
+            login_user(user)
+            #next_page = request.args.get('next')
+            return redirect("/main")
+        else:
+            flash("Логин или пароль не корректные")
+    else:
+        flash("Введите логин и пароль")
+        return render_template('login.html')
+
+
 
 
 @app.route('/logout',methods=['GET','POST'])
