@@ -111,48 +111,6 @@
 </div>
 <!-- [ Main Content ] end -->
 
-<!-- Форма добавления должника-->
-<div class="modal fade append_debitor" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="col-md-12">
-                <form>
-                    <div class="form-group">
-                        <label>Наименование</label>
-                        <input type="text" class="form-control" placeholder="Введите наименование организации">
-                        <label>ИНН</label>
-                        <input type="text" class="form-control" placeholder="Введите ИНН организации">
-                        <label>Сумма долга</label>
-                        <input type="text" class="form-control" placeholder="Общая сумма долга">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Период</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>1 квартал</option>
-                            <option>2 квартал</option>
-                            <option>3 квартал</option>
-                            <option>4 квартал</option>
-                        </select>
-                        <label for="exampleFormControlSelect1">За какой год</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>2020</option>
-                            <option>2019</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Комментарий</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-square btn-info float-right" title="btn btn-outline-secondary"
-                        data-toggle="tooltip"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Форма добавления должника END-->
+{% include 'debitor_form_append.html'%}
 
 {% endblock %}
