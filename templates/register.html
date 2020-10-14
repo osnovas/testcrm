@@ -1,8 +1,26 @@
-{% extends 'base.html' %}
-{% block title %}
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block body %}
+<head>
+    <title>ОсноваС</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Free Datta Able Admin Template come up with latest Bootstrap 4 framework with basic components, form elements and lots of pre-made layout options" />
+    <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template, free admin theme, free dashboard template"/>
+    <meta name="author" content="CodedThemes"/>
+
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/fontawesome/css/fontawesome-all.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/animation/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <title>{% block title  %}{% endblock %}</title>
+
+</head>
+
+
+<body>
     <div class="auth-wrapper">
         <div class="auth-content">
             <div class="auth-bg">
@@ -39,4 +57,10 @@
         </div>
     </div>
 
-{% endblock %}
+    <!-- Required Js -->
+    <script src="{{ url_for('static', filename='js/vendor-all.min.js')}}"></script>
+	<script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/pcoded.min.js')}}"></script>
+
+</body>
+</html>
