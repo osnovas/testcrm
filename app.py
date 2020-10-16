@@ -78,11 +78,6 @@ def logout():
     logout_user()
     return redirect(url_for("login"))
 
-@app.route('/main-lead-append', methods=['GET', 'POST'])
-@login_required
-def main_lead_append():
-    return render_template("main-lead-append.html")
-
 
 @app.route("/main")
 @login_required
@@ -94,11 +89,6 @@ def index():
 def debitor():
     return render_template("debitor.html")
 
-
-@app.route('/workspace', methods=["GET", "POST"])
-@login_required
-def workspace():
-    return render_template("workspace.html")
 
 @app.after_request
 def redirect_to_signin(response):

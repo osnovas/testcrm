@@ -1,25 +1,25 @@
 <!-- [ tabs ] start -->
 <div class="col-sm-12">
-    <h5>Физические лица</h5>
+    <h5>Общества с ограниченной ответственностью</h5>
     <hr>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active text-uppercase" id="home-tab" data-toggle="tab" href="#fiziki_vedenie" role="tab"
+            <a class="nav-link active text-uppercase" id="home-tab" data-toggle="tab" href="#ooo_vedenie" role="tab"
                 aria-controls="home" aria-selected="true">Ведение</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-uppercase" id="profile-tab" data-toggle="tab" href="#fiziki_razoviy" role="tab"
+            <a class="nav-link text-uppercase" id="profile-tab" data-toggle="tab" href="#ooo_razoviy" role="tab"
                 aria-controls="profile" aria-selected="false">Разовые</a>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="fiziki_vedenie" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane fade show active" id="ooo_vedenie" role="tabpanel" aria-labelledby="home-tab">
             <!-- [ Hover-table ] start -->
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
                         <button type="button" class="btn btn-square btn-info float-left" data-toggle="modal"
-                            data-target=".append_client"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить
+                            data-target=".client_ooo_append_vedenie"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить
                             ведение</button>
                     </div>
                     <div class="card-block table-border-style">
@@ -101,13 +101,13 @@
             <!-- [ Hover-table ] end -->
         </div>
 
-        <div class="tab-pane fade" id="fiziki_razoviy" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="tab-pane fade" id="ooo_razoviy" role="tabpanel" aria-labelledby="profile-tab">
             <!-- [ Hover-table ] start -->
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
                         <button type="button" class="btn btn-square btn-info float-left" data-toggle="modal"
-                            data-target=".append_client"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить
+                            data-target=".client_ooo_append_razoviy"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить
                             разовый</button>
                     </div>
                     <div class="card-block table-border-style">
@@ -190,3 +190,6 @@
         </div>
     </div>
 </div>
+
+<!--Данная конструкция добавляет всплывающую форму добавления ООО. Эта форма вынесена в отдельный HTML шаблон client_ооо_append-->
+{% include 'ooo_append.html' %}
