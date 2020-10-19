@@ -106,6 +106,7 @@ def index():
 def ip_append():
     if request.method == "POST":
         name_company = request.form['name_company']
+        kolvo_sotr = request.form['kolvo_sotr']
         inn_company = request.form['inn_company']
         ogrnip = request.form['ogrnip']
         fio = request.form['fio']
@@ -115,7 +116,7 @@ def ip_append():
         tel_number = request.form['tel_number']
         email = request.form['email']
         comment = request.form['comment']
-        append_ip = ip_company(name_company=name_company, inn_company=inn_company, ogrnip=ogrnip, fio=fio, sis_nalog=sis_nalog,
+        append_ip = ip_company(name_company=name_company, kolvo_sotr=kolvo_sotr, inn_company=inn_company, ogrnip=ogrnip, fio=fio, sis_nalog=sis_nalog,
                                vid_uslugi=vid_uslugi, vid_rabot=vid_rabot, tel_number=tel_number, email=email,comment=comment )
         try:
             db.session.add(append_ip)
