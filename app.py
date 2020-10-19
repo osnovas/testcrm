@@ -97,8 +97,8 @@ def logout():
 @app.route("/main")
 @login_required
 def index():
-
-    return render_template("main.html")
+    ip_clients = ip_company.query.order_by(ip_company.id).all()
+    return render_template("main.html", ip_clients=ip_clients)
     #usluga_list = request.form.getlist('get_usluga_ooo_razoviy')
 
 @app.route("/ip_append", methods=['GET','POST'])
