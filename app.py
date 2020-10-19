@@ -20,6 +20,21 @@ class User(db.Model, UserMixin):
     login = db.Column(db.String(128), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
 
+class ip_company(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name_company = db.Column(db.String(255), nullable=False)
+    inn_company = db.Column(db.String(50), nullable=False)
+    ogrnip = db.Column(db.String(128), nullable=False, unique=True)
+    fio = db.Column(db.String(255), nullable=False)
+    sis_nalog = db.Column(db.String(10), nullable=False)
+    vid_uslugi = db.Column(db.String(255), nullable=False)
+    vid_rabot = db.Column(db.String(255), nullable=False)
+    tel_number = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
+    date_create = db.Column(db.DateTime, default=datetime.utcnow)
+
+
 
 @manager.user_loader
 def load_user(user_id):
@@ -82,7 +97,34 @@ def logout():
 @app.route("/main")
 @login_required
 def index():
+
     return render_template("main.html")
+    #usluga_list = request.form.getlist('get_usluga_ooo_razoviy')
+
+@app.route("/ip_append", methods=['GET','POST'])
+@login_required
+def ip_append():
+    if request.method == "POST":
+        name_company = request.form['name_company']
+        inn_company = request.form['inn_company']
+        ogrnip = request.form['ogrnip']
+        fio = request.form['fio']
+        sis_nalog = request.form['sis_nalog']
+        vid_uslugi = request.form['vid_uslugi']
+        vid_rabot = request.form['vid_rabot']
+        tel_number = request.form['tel_number']
+        email = request.form['email']
+        comment = request.form['comment']
+        append_ip = ip_company(name_company=name_company, inn_company=inn_company, ogrnip=ogrnip, fio=fio, sis_nalog=sis_nalog,
+                               vid_uslugi=vid_uslugi, vid_rabot=vid_rabot, tel_number=tel_number, email=email,comment=comment )
+        try:
+            db.session.add(append_ip)
+            db.session.commit()
+            return redirect('/main')
+        except:
+            return "При добавлении получилась ошибка"
+    else:
+        return render_template('main.html')
 
 @app.route('/debitor', methods=['GET', 'POST'])
 @login_required
