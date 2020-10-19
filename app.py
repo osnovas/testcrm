@@ -23,6 +23,7 @@ class User(db.Model, UserMixin):
 class ip_company(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name_company = db.Column(db.String(255), nullable=False)
+    kolvo_sotr = db.Column(db.String(255), nullable=False)
     inn_company = db.Column(db.String(50), nullable=False)
     ogrnip = db.Column(db.String(128), nullable=False, unique=True)
     fio = db.Column(db.String(255), nullable=False)
