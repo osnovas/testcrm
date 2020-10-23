@@ -20,7 +20,22 @@ class User(db.Model, UserMixin):
     login = db.Column(db.String(128), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
 
-class ip_company(db.Model, UserMixin):
+class ip_company_vedenie(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name_company = db.Column(db.String(255), nullable=False)
+    kolvo_sotr = db.Column(db.String(255), nullable=False)
+    inn_company = db.Column(db.String(50), nullable=False)
+    ogrnip = db.Column(db.String(128), nullable=False, unique=True)
+    fio = db.Column(db.String(255), nullable=False)
+    sis_nalog = db.Column(db.String(10), nullable=False)
+    vid_uslugi = db.Column(db.String(255), nullable=False)
+    vid_rabot = db.Column(db.String(255), nullable=False)
+    tel_number = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
+    date_create = db.Column(db.DateTime, default=datetime.utcnow)
+
+class ip_company_razoviy(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name_company = db.Column(db.String(255), nullable=False)
     kolvo_sotr = db.Column(db.String(255), nullable=False)
@@ -98,11 +113,12 @@ def logout():
 @app.route("/main")
 @login_required
 def index():
-    ip_clients = ip_company.query.order_by(ip_company.id).all()
-    return render_template("main.html", ip_clients=ip_clients)
-    #usluga_list = request.form.getlist('get_usluga_ooo_razoviy')
+    ip_clients_ved = ip_company_vedenie.query.order_by(ip_company_vedenie.id).all()
+    ip_clients_raz = ip_company_razoviy.query.order_by(ip_company_razoviy.id).all()
+    return render_template("main.html", ip_clients_ved=ip_clients_ved, ip_clients_raz=ip_clients_raz)
 
-@app.route("/ip_append", methods=['GET','POST'])
+
+@app.route("/ip_append#input_value_ip_vedenie", methods=['GET','POST'])
 @login_required
 def ip_append():
     if request.method == "POST":
@@ -117,7 +133,7 @@ def ip_append():
         tel_number = request.form['tel_number']
         email = request.form['email']
         comment = request.form['comment']
-        append_ip = ip_company(name_company=name_company, kolvo_sotr=kolvo_sotr, inn_company=inn_company, ogrnip=ogrnip, fio=fio, sis_nalog=sis_nalog,
+        append_ip = ip_company_vedenie(name_company=name_company, kolvo_sotr=kolvo_sotr, inn_company=inn_company, ogrnip=ogrnip, fio=fio, sis_nalog=sis_nalog,
                                vid_uslugi=vid_uslugi, vid_rabot=vid_rabot, tel_number=tel_number, email=email,comment=comment )
         try:
             db.session.add(append_ip)
@@ -127,6 +143,40 @@ def ip_append():
             return "При добавлении получилась ошибка"
     else:
         return render_template('main.html')
+
+
+
+
+@app.route("/ip_append#input_value_ip_razoviy", methods=['GET','POST'])
+@login_required
+def ip_append_razoviy():
+    if request.method == "POST":
+        name_company = request.form['name_company']
+        kolvo_sotr = request.form['kolvo_sotr']
+        inn_company = request.form['inn_company']
+        ogrnip = request.form['ogrnip']
+        fio = request.form['fio']
+        sis_nalog = request.form['sis_nalog']
+        vid_uslugi = request.form['vid_uslugi']
+        vid_rabot = request.form['vid_rabot']
+        tel_number = request.form['tel_number']
+        email = request.form['email']
+        comment = request.form['comment']
+        append_ip_raz = ip_company_razoviy(name_company=name_company, kolvo_sotr=kolvo_sotr, inn_company=inn_company, ogrnip=ogrnip, fio=fio, sis_nalog=sis_nalog,
+                               vid_uslugi=vid_uslugi, vid_rabot=vid_rabot, tel_number=tel_number, email=email,comment=comment )
+        try:
+            db.session.add(append_ip_raz)
+            db.session.commit()
+            return redirect('/main')
+        except:
+            return "При добавлении получилась ошибка"
+    else:
+        return render_template('main.html')
+
+
+
+
+
 
 @app.route('/debitor', methods=['GET', 'POST'])
 @login_required
