@@ -1,10 +1,11 @@
 <!-- Форма добавления клиента ИП на ведение-->
+
 <div class="modal fade client_ip_append_vedenie" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="col-md-12">
-                <form action="{{ url_for('ip_append') }}" method="post" id="input_value_ip_vedenie">
+                <form action="{{ url_for('ip_append') }}"  method="post" id="input_value_ip_vedenie">
                     <div class="form-group">
                         <label>Наименование</label>
                         <input type="text" name="name_company" class="form-control" placeholder="Введите наименование ИП" required>
@@ -56,7 +57,7 @@
                     <label>Вид деятельности</label>
                     <input type="text" name="vid_rabot" class="form-control" placeholder="Чем занимается клиент" required>
                     <label>Телефон</label>
-                    <input type="number" name="tel_number" class="form-control" placeholder="Телефон" required>
+                    <input type="text" id="phone" name="tel_number" class="form-control" placeholder="Телефон" required>
 
                     <label>e-mail</label>
                     <input type="email" name="email" class="form-control" placeholder="Электронная почта" required>
@@ -66,7 +67,7 @@
                         <label for="exampleFormControlTextarea1">Комментарий</label>
                         <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-square btn-info float-right" title="btn btn-outline-secondary"
+                    <button type="submit"  name="add_client_ip" value="add_ip_ved" class="btn btn-square btn-info float-right" title="btn btn-outline-secondary"
                         data-toggle="tooltip"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить</button>
                 </form>
             </div>
@@ -132,9 +133,9 @@
                         </select>
                     </div>
                     <label>Вид деятельности</label>
-                    <input type="text" name="vid_rabot" class="form-control" placeholder="Чем занимается клиент" required>
+                    <input type="text"  name="vid_rabot" class="form-control" placeholder="Чем занимается клиент" required>
                     <label>Телефон</label>
-                    <input type="number" name="tel_number" class="form-control" placeholder="Телефон" required>
+                    <input type="text" id="phone" name="tel_number" class="form-control" placeholder="Телефон" required>
 
                     <label>e-mail</label>
                     <input type="email" name="email" class="form-control" placeholder="Электронная почта" required>
@@ -144,7 +145,7 @@
                         <label for="exampleFormControlTextarea1">Комментарий</label>
                         <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-square btn-info float-right" title="btn btn-outline-secondary"
+                    <button type="submit" name="add_client_ip" value="add_ip_raz" class="btn btn-square btn-info float-right" title="btn btn-outline-secondary"
                         data-toggle="tooltip"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить</button>
                 </form>
             </div>

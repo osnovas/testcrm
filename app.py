@@ -3,6 +3,7 @@ from flask import Flask, render_template, url_for, request, flash, redirect
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
 
 app = Flask(__name__)
@@ -85,6 +86,13 @@ def register():
 
 #тут пишем роуты
 
+@app.after_request
+def add_header(response):
+    """Запрещаяем всяческое кеширование из-за IE и json и модальных окон"""
+    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+    response.headers['Cache-Control'] = 'public, max-age=0'
+    return response
+
 @app.route('/', methods=['GET','POST'])
 def login():
     login = request.form.get('login')
@@ -118,60 +126,61 @@ def index():
     return render_template("main.html", ip_clients_ved=ip_clients_ved, ip_clients_raz=ip_clients_raz)
 
 
-@app.route("/ip_append#input_value_ip_vedenie", methods=['GET','POST'])
+@app.route("/ip_append", methods=['GET','POST'])
 @login_required
 def ip_append():
     if request.method == "POST":
-        name_company = request.form['name_company']
-        kolvo_sotr = request.form['kolvo_sotr']
-        inn_company = request.form['inn_company']
-        ogrnip = request.form['ogrnip']
-        fio = request.form['fio']
-        sis_nalog = request.form['sis_nalog']
-        vid_uslugi = request.form['vid_uslugi']
-        vid_rabot = request.form['vid_rabot']
-        tel_number = request.form['tel_number']
-        email = request.form['email']
-        comment = request.form['comment']
-        append_ip = ip_company_vedenie(name_company=name_company, kolvo_sotr=kolvo_sotr, inn_company=inn_company, ogrnip=ogrnip, fio=fio, sis_nalog=sis_nalog,
-                               vid_uslugi=vid_uslugi, vid_rabot=vid_rabot, tel_number=tel_number, email=email,comment=comment )
-        try:
-            db.session.add(append_ip)
-            db.session.commit()
-            return redirect('/main')
-        except:
-            return "При добавлении получилась ошибка"
+        if request.form['add_client_ip'] == 'add_ip_ved':
+            name_company = request.form['name_company']
+            kolvo_sotr = request.form['kolvo_sotr']
+            inn_company = request.form['inn_company']
+            ogrnip = request.form['ogrnip']
+            fio = request.form['fio']
+            sis_nalog = request.form['sis_nalog']
+            vid_uslugi = request.form['vid_uslugi']
+            vid_rabot = request.form['vid_rabot']
+            tel_number = request.form['tel_number']
+            email = request.form['email']
+            comment = request.form['comment']
+            append_ip = ip_company_vedenie(name_company=name_company, kolvo_sotr=kolvo_sotr, inn_company=inn_company, ogrnip=ogrnip, fio=fio, sis_nalog=sis_nalog,
+                                   vid_uslugi=vid_uslugi, vid_rabot=vid_rabot, tel_number=tel_number, email=email,comment=comment )
+            try:
+                db.session.add(append_ip)
+                db.session.commit()
+                return redirect('/main')
+            except:
+                return "При добавлении получилась ошибка"
+
+        elif request.form['add_client_ip'] == 'add_ip_raz':
+            name_company = request.form['name_company']
+            kolvo_sotr = request.form['kolvo_sotr']
+            inn_company = request.form['inn_company']
+            ogrnip = request.form['ogrnip']
+            fio = request.form['fio']
+            sis_nalog = request.form['sis_nalog']
+            vid_uslugi = request.form['vid_uslugi']
+            vid_rabot = request.form['vid_rabot']
+            tel_number = request.form['tel_number']
+            email = request.form['email']
+            comment = request.form['comment']
+            append_ip = ip_company_razoviy(name_company=name_company, kolvo_sotr=kolvo_sotr, inn_company=inn_company,
+                                           ogrnip=ogrnip, fio=fio, sis_nalog=sis_nalog,
+                                           vid_uslugi=vid_uslugi, vid_rabot=vid_rabot, tel_number=tel_number,
+                                           email=email, comment=comment)
+            try:
+                db.session.add(append_ip)
+                db.session.commit()
+                return redirect('/main')
+            except:
+                return "При добавлении получилась ошибка"
+
     else:
         return render_template('main.html')
 
 
 
 
-@app.route("/ip_append#input_value_ip_razoviy", methods=['GET','POST'])
-@login_required
-def ip_append_razoviy():
-    if request.method == "POST":
-        name_company = request.form['name_company']
-        kolvo_sotr = request.form['kolvo_sotr']
-        inn_company = request.form['inn_company']
-        ogrnip = request.form['ogrnip']
-        fio = request.form['fio']
-        sis_nalog = request.form['sis_nalog']
-        vid_uslugi = request.form['vid_uslugi']
-        vid_rabot = request.form['vid_rabot']
-        tel_number = request.form['tel_number']
-        email = request.form['email']
-        comment = request.form['comment']
-        append_ip_raz = ip_company_razoviy(name_company=name_company, kolvo_sotr=kolvo_sotr, inn_company=inn_company, ogrnip=ogrnip, fio=fio, sis_nalog=sis_nalog,
-                               vid_uslugi=vid_uslugi, vid_rabot=vid_rabot, tel_number=tel_number, email=email,comment=comment )
-        try:
-            db.session.add(append_ip_raz)
-            db.session.commit()
-            return redirect('/main')
-        except:
-            return "При добавлении получилась ошибка"
-    else:
-        return render_template('main.html')
+
 
 
 

@@ -12,6 +12,7 @@
     <meta name="author" content="CodedThemes"/>
 
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico')}}">
+    <script src="{{ url_for('static', filename='js/jquery.maskedinput.js')}}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='fonts/fontawesome/css/fontawesome-all.min.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='plugins/animation/css/animate.min.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
@@ -21,6 +22,11 @@
 
 
 <body>
+<script>
+    $(function(){
+      $("#phone").mask("8(999) 999-9999");
+    });
+</script>
 <div class="loader-bg">
         <div class="loader-track">
             <div class="loader-fill"></div>
@@ -111,6 +117,9 @@
     <script src="{{ url_for('static', filename='js/vendor-all.min.js')}}"></script>
 	<script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{ url_for('static', filename='js/pcoded.min.js')}}"></script>
+
+
+
 
 </body>
 </html>
