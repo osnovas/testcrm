@@ -4,42 +4,47 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="col-md-12">
-                <form>
+                <form action="{{ url_for('ooo_append') }}"  method="post">
+                    <script>
+                        $(function(){
+                          $("#phone").mask("8(999) 999-9999");
+                        });
+                    </script>
                     <div class="form-group">
                         <label>Наименование ООО</label>
-                        <input type="text" class="form-control" placeholder="Введите наименование ООО" required>
+                        <input type="text" name="name_company" class="form-control" placeholder="Введите наименование ООО" required>
 
                         <label>ИНН</label>
-                        <input type="number" class="form-control" placeholder="Введите ИНН" required>
+                        <input type="number" name="inn_company" class="form-control" placeholder="Введите ИНН" required>
 
                         <label>ОГРН</label>
-                        <input type="number" class="form-control" placeholder="Введите ОГРН" required>
+                        <input type="number" name="ogrn" class="form-control" placeholder="Введите ОГРН" required>
 
                         <label>КПП</label>
-                        <input type="number" class="form-control" placeholder="Введите КПП" required>
+                        <input type="number" name="kpp" class="form-control" placeholder="Введите КПП" required>
 
                         <label>Дата регистрации</label>
-                        <input type="date" class="form-control" placeholder="Когда зарегистрирована организация" required>
+                        <input type="text" name="date_reg" class="form-control" placeholder="Когда зарегистрирована организация" required>
 
                         <label>Генеральный директор</label>
-                        <input type="text" class="form-control" placeholder="ФИО ГенДира" required>
+                        <input type="text" name="fio_gen_dir" class="form-control" placeholder="ФИО ГенДира" required>
 
                         <label>Контактное лицо</label>
-                        <input type="text" class="form-control" placeholder="ФИО Контактного лица" required>
+                        <input type="text" name="fio_contact" class="form-control" placeholder="ФИО Контактного лица" required>
 
                         <label>Вид деятельности</label>
-                        <input type="text" class="form-control" placeholder="Чем занимается клиент" required>
+                        <input type="text" name="vid_rabot" class="form-control" placeholder="Чем занимается клиент" required>
 
                         <label>Телефон</label>
-                        <input type="number" class="form-control" placeholder="Телефон" required>
+                        <input type="text"  name="tel_number" id="phone" class="form-control" placeholder="Телефон" required>
 
                         <label>e-mail</label>
-                        <input type="email" class="form-control" placeholder="Электронная почта" required>
+                        <input type="email" name="email" class="form-control" placeholder="Электронная почта" required>
 
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Система налогообложения</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
+                        <select class="form-control" name="sis_nalog" id="exampleFormControlSelect1">
                             <option>ОСНО</option>
                             <option>УСН6</option>
                             <option>УСН15</option>
@@ -50,7 +55,7 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Вид услуги</label>
-                        <select class="form-control" id="get_usluga_ooo_vedenie">
+                        <select class="form-control" name="vid_uslugi" id="get_usluga_ooo_vedenie">
                             <option>Ведение бухгалтерского и налогового учета</option>
                             <option>3ндфл</option>
                             <option>Нулеваяя отчетность</option>
@@ -69,13 +74,11 @@
                         </select>
                     </div>
 
-
-
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Комментарий</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-square btn-info float-right" title="btn btn-outline-secondary"
+                    <button type="submit" name="add_client_ooo" value="add_ooo_ved" class="btn btn-square btn-info float-right" title="btn btn-outline-secondary"
                         data-toggle="tooltip"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить</button>
                 </form>
             </div>
@@ -90,34 +93,34 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="col-md-12">
-                <form>
+                <form action="{{ url_for('ooo_append') }}" method="post">
                     <div class="form-group">
                         <label>Наименование ООО</label>
-                        <input type="text" class="form-control" placeholder="Введите наименование ООО" required>
+                        <input type="text" name="name_company" class="form-control" placeholder="Введите наименование ООО" required>
 
                         <label>ИНН</label>
-                        <input type="number" class="form-control" placeholder="Введите ИНН" required>
+                        <input type="number" name="inn_company" class="form-control" placeholder="Введите ИНН" required>
 
                         <label>ОГРН</label>
-                        <input type="number" class="form-control" placeholder="Введите ОГРН" required>
+                        <input type="number" name="ogrn" class="form-control" placeholder="Введите ОГРН" required>
 
                         <label>КПП</label>
-                        <input type="number" class="form-control" placeholder="Введите КПП" required>
+                        <input type="number" name="kpp" class="form-control" placeholder="Введите КПП" required>
 
                         <label>Дата регистрации</label>
-                        <input type="date" class="form-control" placeholder="Когда зарегистрирована организация" required>
+                        <input type="text" class="form-control" placeholder="Когда зарегистрирована организация" required>
 
                         <label>Генеральный директор</label>
-                        <input type="text" class="form-control" placeholder="ФИО ГенДира" required>
+                        <input type="text" name="fio_gen_dir" class="form-control" placeholder="ФИО ГенДира" required>
 
                         <label>Контактное лицо</label>
-                        <input type="text" class="form-control" placeholder="ФИО Контактного лица" required>
+                        <input type="text" name="fio_contact" class="form-control" placeholder="ФИО Контактного лица" required>
 
                         <label>Вид деятельности</label>
-                        <input type="text" class="form-control" placeholder="Чем занимается клиент" required>
+                        <input type="text" name="vid_rabot" class="form-control" placeholder="Чем занимается клиент" required>
 
                         <label>Телефон</label>
-                        <input type="number" class="form-control" placeholder="Телефон" required>
+                        <input type="number" name="tel_number" class="form-control" placeholder="Телефон" required>
 
                         <label>e-mail</label>
                         <input type="email" class="form-control" placeholder="Электронная почта" required>
@@ -125,7 +128,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Система налогообложения</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
+                        <select class="form-control" name="sis_nalog" id="exampleFormControlSelect1">
                             <option>ОСНО</option>
                             <option>УСН6</option>
                             <option>УСН15</option>
@@ -136,7 +139,7 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Вид услуги</label>
-                        <select class="form-control" id="get_usluga_ooo_razoviy">
+                        <select class="form-control" name="vid_uslugi" id="get_usluga_ooo_razoviy">
                             <option>Ведение бухгалтерского и налогового учета</option>
                             <option>3ндфл</option>
                             <option>Нулеваяя отчетность</option>
@@ -159,9 +162,9 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Комментарий</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-square btn-info float-right" title="btn btn-outline-secondary"
+                    <button type="submit" name="add_client_ooo" value="add_ooo_raz" class="btn btn-square btn-info float-right" title="btn btn-outline-secondary"
                         data-toggle="tooltip"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить</button>
                 </form>
             </div>

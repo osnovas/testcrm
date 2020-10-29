@@ -53,6 +53,44 @@ class ip_company_razoviy(db.Model, UserMixin):
 
 
 
+class ooo_company_vedenie(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name_company = db.Column(db.String(255), nullable=False)
+    #kolvo_sotr = db.Column(db.String(255), nullable=False)
+    inn_company = db.Column(db.String(50), nullable=False)
+    ogrn = db.Column(db.String(128), nullable=False, unique=True)
+    kpp = db.Column(db.String(128), nullable=False, unique=True)
+    date_reg = db.Column(db.String(255), nullable=False)
+    fio_gen_dir = db.Column(db.String(255), nullable=False)
+    fio_contact = db.Column(db.String(255), nullable=False)
+    sis_nalog = db.Column(db.String(10), nullable=False)
+    vid_uslugi = db.Column(db.String(255), nullable=False)
+    vid_rabot = db.Column(db.String(255), nullable=False)
+    tel_number = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
+    date_create = db.Column(db.DateTime, default=datetime.utcnow)
+
+class ooo_company_razoviy(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name_company = db.Column(db.String(255), nullable=False)
+    #kolvo_sotr = db.Column(db.String(255), nullable=False)
+    inn_company = db.Column(db.String(50), nullable=False)
+    ogrn = db.Column(db.String(128), nullable=False, unique=True)
+    kpp = db.Column(db.String(128), nullable=False, unique=True)
+    date_reg = db.Column(db.String(255), nullable=False)
+    fio_gen_dir = db.Column(db.String(255), nullable=False)
+    fio_contact = db.Column(db.String(255), nullable=False)
+    sis_nalog = db.Column(db.String(10), nullable=False)
+    vid_uslugi = db.Column(db.String(255), nullable=False)
+    vid_rabot = db.Column(db.String(255), nullable=False)
+    tel_number = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
+    date_create = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+
 @manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
@@ -86,12 +124,6 @@ def register():
 
 #тут пишем роуты
 
-@app.after_request
-def add_header(response):
-    """Запрещаяем всяческое кеширование из-за IE и json и модальных окон"""
-    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-    response.headers['Cache-Control'] = 'public, max-age=0'
-    return response
 
 @app.route('/', methods=['GET','POST'])
 def login():
@@ -123,7 +155,10 @@ def logout():
 def index():
     ip_clients_ved = ip_company_vedenie.query.order_by(ip_company_vedenie.id).all()
     ip_clients_raz = ip_company_razoviy.query.order_by(ip_company_razoviy.id).all()
-    return render_template("main.html", ip_clients_ved=ip_clients_ved, ip_clients_raz=ip_clients_raz)
+    ooo_clients_ved = ooo_company_vedenie.query.order_by(ooo_company_vedenie.id).all()
+    ooo_clients_raz = ooo_company_razoviy.query.order_by(ooo_company_razoviy.id).all()
+    return render_template("main.html", ip_clients_ved=ip_clients_ved, ip_clients_raz=ip_clients_raz,
+                           ooo_clients_ved=ooo_clients_ved, ooo_clients_raz=ooo_clients_raz)
 
 
 @app.route("/ip_append", methods=['GET','POST'])
@@ -179,6 +214,68 @@ def ip_append():
 
 
 
+@app.route("/ooo_append", methods=['GET','POST'])
+@login_required
+def ooo_append():
+    if request.method == "POST":
+        if request.form['add_client_ooo'] == 'add_ooo_ved':
+            name_company = request.form['name_company']
+            #kolvo_sotr = request.form['kolvo_sotr']
+            inn_company = request.form['inn_company']
+            ogrn = request.form['ogrn']
+            kpp = request.form['kpp']
+            date_reg = request.form['date_reg']
+            fio_gen_dir = request.form['fio_gen_dir']
+            fio_contact = request.form['fio_contact']
+            sis_nalog = request.form['sis_nalog']
+            vid_uslugi = request.form['vid_uslugi']
+            vid_rabot = request.form['vid_rabot']
+            tel_number = request.form['tel_number']
+            email = request.form['email']
+            comment = request.form['comment']
+            append_ooo = ooo_company_vedenie(name_company=name_company,  inn_company=inn_company, ogrn=ogrn, date_reg=date_reg, kpp=kpp,
+                                             sis_nalog=sis_nalog, fio_gen_dir=fio_gen_dir, fio_contact=fio_contact,
+                                            vid_uslugi=vid_uslugi, vid_rabot=vid_rabot, tel_number=tel_number, email=email,comment=comment )
+
+            print(append_ooo)
+            try:
+                db.session.add(append_ooo)
+                db.session.commit()
+                return redirect('/main')
+            except:
+                return "При добавлении получилась ошибка"
+
+        elif request.form['add_client_ooo'] == 'add_ooo_raz':
+            name_company = request.form['name_company']
+            #kolvo_sotr = request.form['kolvo_sotr']
+            inn_company = request.form['inn_company']
+            ogrn = request.form['ogrn']
+            kpp = request.form['kpp']
+            date_reg = request.form['date_reg']
+            fio_gen_dir = request.form['fio_gen_dir']
+            fio_contact = request.form['fio_contact']
+            sis_nalog = request.form['sis_nalog']
+            vid_uslugi = request.form['vid_uslugi']
+            vid_rabot = request.form['vid_rabot']
+            tel_number = request.form['tel_number']
+            email = request.form['email']
+            comment = request.form['comment']
+            append_ooo_raz = ooo_company_razoviy(name_company=name_company,  inn_company=inn_company, ogrn=ogrn, date_reg=date_reg,  kpp=kpp,
+                                             sis_nalog=sis_nalog, fio_gen_dir=fio_gen_dir,
+                                            fio_contact=fio_contact, vid_uslugi=vid_uslugi, vid_rabot=vid_rabot, tel_number=tel_number,
+                                            email=email, comment=comment)
+            try:
+                db.session.add(append_ooo_raz)
+                db.session.commit()
+                return redirect('/main')
+            except:
+                return "При добавлении получилась ошибка"
+
+    else:
+        return render_template('main.html')
+
+
+
 
 
 
@@ -197,6 +294,12 @@ def debitor():
 def redirect_to_signin(response):
     if response.status_code == 401:
         return redirect(url_for("login") + '?next' + request.url)
+    return response
+
+def add_header(response):
+    """Запрещаяем всяческое кеширование из-за IE и json и модальных окон"""
+    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+    response.headers['Cache-Control'] = 'public, max-age=0'
     return response
 
 
