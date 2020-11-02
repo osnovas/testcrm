@@ -90,6 +90,37 @@ class ooo_company_razoviy(db.Model, UserMixin):
     date_create = db.Column(db.DateTime, default=datetime.utcnow)
 
 
+class fiz_ved(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    fio = db.Column(db.String(255), nullable=False)
+    passport = db.Column(db.String(255), nullable=False)
+    pass_vidan = db.Column(db.String(255), nullable=False)
+    date_vidan = db.Column(db.String(255), nullable=False)
+    kod_podr = db.Column(db.String(255), nullable=False)
+    fio_contact = db.Column(db.String(255), nullable=False)
+    #vid_uslugi = db.Column(db.String(255), nullable=False)
+    tel_number = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
+    date_create = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+class fiz_raz(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    fio = db.Column(db.String(255), nullable=False)
+    passport = db.Column(db.String(255), nullable=False)
+    pass_vidan = db.Column(db.String(255), nullable=False)
+    date_vidan = db.Column(db.String(255), nullable=False)
+    kod_podr = db.Column(db.String(255), nullable=False)
+    fio_contact = db.Column(db.String(255), nullable=False)
+    #vid_uslugi = db.Column(db.String(255), nullable=False)
+    tel_number = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
+    date_create = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+
 
 @manager.user_loader
 def load_user(user_id):
@@ -157,8 +188,11 @@ def index():
     ip_clients_raz = ip_company_razoviy.query.order_by(ip_company_razoviy.id).all()
     ooo_clients_ved = ooo_company_vedenie.query.order_by(ooo_company_vedenie.id).all()
     ooo_clients_raz = ooo_company_razoviy.query.order_by(ooo_company_razoviy.id).all()
+    fiz_vedenie = fiz_ved.query.order_by(fiz_ved.id).all()
+    fiz_razoviy = fiz_raz.query.order_by(fiz_raz.id).all()
     return render_template("main.html", ip_clients_ved=ip_clients_ved, ip_clients_raz=ip_clients_raz,
-                           ooo_clients_ved=ooo_clients_ved, ooo_clients_raz=ooo_clients_raz)
+                           ooo_clients_ved=ooo_clients_ved, ooo_clients_raz=ooo_clients_raz, fiz_vedenie=fiz_vedenie,
+                           fiz_razoviy=fiz_razoviy)
 
 
 @app.route("/ip_append", methods=['GET','POST'])
@@ -277,7 +311,52 @@ def ooo_append():
 
 
 
+@app.route("/fiziki_append", methods=['GET','POST'])
+@login_required
+def fiziki_append():
+    if request.method == "POST":
+        if request.form['add_client_fiz'] == 'add_fiz_ved':
+            fio = request.form['fio']
+            passport = request.form['passport']
+            pass_vidan = request.form['pass_vidan']
+            date_vidan = request.form['date_vidan']
+            kod_podr = request.form['kod_podr']
+            fio_contact = request.form['fio_contact']
+            tel_number = request.form['tel_number']
+            email = request.form['email']
+            comment = request.form['comment']
+            append_fiz = fiz_ved(fio=fio, fio_contact=fio_contact, passport=passport, pass_vidan=pass_vidan,
+                                 date_vidan=date_vidan, kod_podr=kod_podr, tel_number=tel_number, email=email,comment=comment )
 
+            try:
+                db.session.add(append_fiz)
+                db.session.commit()
+                return redirect('/main')
+            except:
+                return "При добавлении получилась ошибка"
+
+        elif request.form['add_client_fiz'] == 'add_fiz_raz':
+            fio = request.form['fio']
+            passport = request.form['passport']
+            pass_vidan = request.form['pass_vidan']
+            date_vidan = request.form['date_vidan']
+            kod_podr = request.form['kod_podr']
+            fio_contact = request.form['fio_contact']
+            tel_number = request.form['tel_number']
+            email = request.form['email']
+            comment = request.form['comment']
+            append_fiz = fiz_raz(fio=fio, fio_contact=fio_contact, passport=passport, pass_vidan=pass_vidan,
+                                 date_vidan=date_vidan, kod_podr=kod_podr, tel_number=tel_number, email=email,
+                                 comment=comment)
+            try:
+                db.session.add(append_fiz)
+                db.session.commit()
+                return redirect('/main')
+            except:
+                return "При добавлении получилась ошибка"
+
+    else:
+        return render_template('main.html')
 
 
 

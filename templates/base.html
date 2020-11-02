@@ -7,12 +7,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="Free Datta Able Admin Template come up with latest Bootstrap 4 framework with basic components, form elements and lots of pre-made layout options" />
-    <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template, free admin theme, free dashboard template"/>
-    <meta name="author" content="CodedThemes"/>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico')}}">
-    <script src="{{ url_for('static', filename='js/jquery.maskedinput.js')}}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='fonts/fontawesome/css/fontawesome-all.min.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='plugins/animation/css/animate.min.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
@@ -22,12 +18,20 @@
 
 
 <body>
-<script>
-    $(function(){
-      $("#phone").mask("8(999) 999-9999");
-    });
-</script>
-<div class="loader-bg">
+
+    <script>
+        jQuery(function($){
+            $('.date').mask('99-99-9999');
+            $('.phone').mask('+7(999) 999-9999');
+            $('.phoneext').mask("(999) 999-9999? x99999");
+            $(".tin").mask("99-9999999");
+            $(".ssn").mask("999-99-9999");
+            $(".product").mask("a*-999-a999");
+            $(".eyescript").mask("~9.99 ~9.99 999");
+        });
+        </script>
+
+    <div class="loader-bg">
         <div class="loader-track">
             <div class="loader-fill"></div>
         </div>
@@ -49,11 +53,17 @@
                     <li class="nav-item pcoded-menu-caption">
                         <label>CRM</label>
                     </li>
-                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item active">
-                        <a href="main" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Текущие клиенты</span></a>
+                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project"
+                        class="nav-item active">
+                        <a href="main" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-users"></i></span><span class="pcoded-mtext">Текущие
+                                клиенты</span></a>
                     </li>
-                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item active">
-                        <a href="debitor" class="nav-link "><span class="pcoded-micon"><i class="feather icon-trending-down"></i></span><span class="pcoded-mtext">Должники</span></a>
+                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project"
+                        class="nav-item active">
+                        <a href="debitor" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-trending-down"></i></span><span
+                                class="pcoded-mtext">Должники</span></a>
                     </li>
                 </ul>
             </div>
@@ -66,11 +76,11 @@
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse1" href="javascript:"><span></span></a>
             <a href="main" class="b-brand">
-                   <div class="b-bg">
-                       <i class="feather icon-trending-up"></i>
-                   </div>
-                   <span class="b-title">Основа С</span>
-               </a>
+                <div class="b-bg">
+                    <i class="feather icon-trending-up"></i>
+                </div>
+                <span class="b-title">Основа С</span>
+            </a>
         </div>
         <a class="mobile-menu" id="mobile-header" href="javascript:">
             <i class="feather icon-more-horizontal"></i>
@@ -99,8 +109,10 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-notification">
                             <ul class="pro-body">
-                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Настройки</a></li>
-                                <li><a href="logout" class="dropdown-item"><i class="feather icon-log-out"></i> Выход</a></li>
+                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i>
+                                        Настройки</a></li>
+                                <li><a href="logout" class="dropdown-item"><i class="feather icon-log-out"></i>
+                                        Выход</a></li>
                             </ul>
                         </div>
                     </div>
@@ -109,17 +121,19 @@
         </div>
     </header>
     <!-- [ Header ] end -->
-{% block body  %}
+    {% block body  %}
 
-{% endblock %}
+    {% endblock %}
 
     <!-- Required Js -->
+    <script src="{{ url_for('static', filename='js/jquery.maskedinput.js')}}"></script>
     <script src="{{ url_for('static', filename='js/vendor-all.min.js')}}"></script>
-	<script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{ url_for('static', filename='js/pcoded.min.js')}}"></script>
 
 
 
 
 </body>
+
 </html>

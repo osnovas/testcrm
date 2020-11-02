@@ -6,11 +6,6 @@
         <div class="modal-content">
             <div class="col-md-12">
                 <form action="{{ url_for('ip_append') }}"  method="post" id="input_value_ip_vedenie">
-                    <script>
-                        $(function(){
-                          $("#phone").mask("8(999) 999-9999");
-                        });
-                    </script>
                     <div class="form-group">
                         <label>Наименование</label>
                         <input type="text" name="name_company" class="form-control" placeholder="Введите наименование ИП" required>
@@ -62,7 +57,7 @@
                     <label>Вид деятельности</label>
                     <input type="text" name="vid_rabot" class="form-control" placeholder="Чем занимается клиент" required>
                     <label>Телефон</label>
-                    <input type="text" id="phone" name="tel_number" class="form-control" placeholder="Телефон" required>
+                    <input type="text" id="phone" name="tel_number" class="form-control phone" placeholder="Телефон" required>
 
                     <label>e-mail</label>
                     <input type="email" name="email" class="form-control" placeholder="Электронная почта" required>
@@ -140,7 +135,7 @@
                     <label>Вид деятельности</label>
                     <input type="text"  name="vid_rabot" class="form-control" placeholder="Чем занимается клиент" required>
                     <label>Телефон</label>
-                    <input type="text" id="phone" name="tel_number" class="form-control" placeholder="Телефон" required>
+                    <input type="text" id="phone" name="tel_number" class="form-control phone" placeholder="Телефон" required>
 
                     <label>e-mail</label>
                     <input type="email" name="email" class="form-control" placeholder="Электронная почта" required>

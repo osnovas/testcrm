@@ -1,15 +1,12 @@
 <!-- Форма добавления клиента ООО на ведение-->
+
 <div class="modal fade client_ooo_append_vedenie" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="col-md-12">
                 <form action="{{ url_for('ooo_append') }}"  method="post">
-                    <script>
-                        $(function(){
-                          $("#phone").mask("8(999) 999-9999");
-                        });
-                    </script>
+
                     <div class="form-group">
                         <label>Наименование ООО</label>
                         <input type="text" name="name_company" class="form-control" placeholder="Введите наименование ООО" required>
@@ -24,7 +21,7 @@
                         <input type="number" name="kpp" class="form-control" placeholder="Введите КПП" required>
 
                         <label>Дата регистрации</label>
-                        <input type="text" name="date_reg" class="form-control" placeholder="Когда зарегистрирована организация" required>
+                        <input type="text" name="date_reg" class="form-control date" placeholder="Когда зарегистрирована организация" required>
 
                         <label>Генеральный директор</label>
                         <input type="text" name="fio_gen_dir" class="form-control" placeholder="ФИО ГенДира" required>
@@ -36,7 +33,7 @@
                         <input type="text" name="vid_rabot" class="form-control" placeholder="Чем занимается клиент" required>
 
                         <label>Телефон</label>
-                        <input type="text"  name="tel_number" id="phone" class="form-control" placeholder="Телефон" required>
+                        <input type="text"  name="tel_number" id="phone" class="form-control phone" placeholder="Телефон" required>
 
                         <label>e-mail</label>
                         <input type="email" name="email" class="form-control" placeholder="Электронная почта" required>
@@ -108,7 +105,7 @@
                         <input type="number" name="kpp" class="form-control" placeholder="Введите КПП" required>
 
                         <label>Дата регистрации</label>
-                        <input type="text" name="date_reg" class="form-control" placeholder="Когда зарегистрирована организация" required>
+                        <input type="text" name="date_reg" class="form-control date" placeholder="Когда зарегистрирована организация" required>
 
                         <label>Генеральный директор</label>
                         <input type="text" name="fio_gen_dir" class="form-control" placeholder="ФИО ГенДира" required>
@@ -120,7 +117,7 @@
                         <input type="text" name="vid_rabot" class="form-control" placeholder="Чем занимается клиент" required>
 
                         <label>Телефон</label>
-                        <input type="number" name="tel_number" class="form-control" placeholder="Телефон" required>
+                        <input type="text" name="tel_number" id="phone" class="form-control phone" placeholder="Телефон" required>
 
                         <label>e-mail</label>
                         <input type="email" name="email" class="form-control" placeholder="Электронная почта" required>
