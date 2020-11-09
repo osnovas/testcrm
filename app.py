@@ -13,6 +13,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 manager = LoginManager(app)
 
+#git_pull_dont_work
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
