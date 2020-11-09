@@ -4,25 +4,29 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="col-md-12">
-                <form>
+                <form action="debitor_form_append"  method="post">
                     <div class="form-group">
                         <label>Наименование</label>
-                        <input type="text" class="form-control" placeholder="Введите наименование организации">
+                        <input type="text" name="name_company" class="form-control" placeholder="Введите наименование организации">
                         <label>ИНН</label>
-                        <input type="number" class="form-control" placeholder="Введите ИНН организации">
+                        <input type="number" name="inn_company" class="form-control" placeholder="Введите ИНН организации">
+                        <label>Контактное лицо</label>
+                        <input type="text" name="fio_contact" class="form-control" placeholder="ФИО Контактного лица" required>
+                        <label>Телефон</label>
+                        <input type="text"  name="tel_number" id="phone" class="form-control phone" placeholder="Телефон" required>
                         <label>Сумма долга</label>
-                        <input type="number" class="form-control" placeholder="Общая сумма долга">
+                        <input type="number" name="summ_deb" class="form-control" placeholder="Общая сумма долга">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Период</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
+                        <select class="form-control" name="kvartal" id="exampleFormControlSelect1">
                             <option>1 квартал</option>
                             <option>2 квартал</option>
                             <option>3 квартал</option>
                             <option>4 квартал</option>
                         </select>
                         <label for="exampleFormControlSelect1">За какой год</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
+                        <select class="form-control" name="god" id="exampleFormControlSelect1">
                             <option>2020</option>
                             <option>2019</option>
                             <option>2018</option>
@@ -31,9 +35,9 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Комментарий</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" placeholder="Опишите подробно за какой квартал, какого года и какую сумму должен клиент" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-square btn-info float-right" title="btn btn-outline-secondary"
+                    <button type="submit" name="add_debitor" value="add_debit" class="btn btn-square btn-info float-right" title="btn btn-outline-secondary"
                         data-toggle="tooltip"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить</button>
                 </form>
             </div>

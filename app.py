@@ -119,39 +119,17 @@ class fiz_raz(db.Model, UserMixin):
     comment = db.Column(db.Text(500), nullable=False)
     date_create = db.Column(db.DateTime, default=datetime.utcnow)
 
+class debitor(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name_company = db.Column(db.String(255), nullable=False)
+    inn_company = db.Column(db.String(50), nullable=False)
+    fio_contact = db.Column(db.String(255), nullable=False)
+    tel_number = db.Column(db.String(255), nullable=False)
+    summ_deb = db.Column(db.String(50), nullable=False)
+    kvartal = db.Column(db.String(50), nullable=False)
+    god = db.Column(db.String(50), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
 
-
-
-@manager.user_loader
-def load_user(user_id):
-    return User.query.get(user_id)
-
-
-
-#регистрация нового пользователя
-@app.route("/register", methods=["POST", "GET"])
-def register():
-    name = request.form.get("name")
-    surname = request.form.get("surname")
-    login = request.form.get("login")
-    password = request.form.get('password')
-    password2 = request.form.get('password2')
-    if request.method == "POST":
-        if not (name or surname or login or password or password2):
-            flash("Пожалуйста заполните все поля")
-        elif password != password2:
-            flash("Пароли не совпадают")
-        else:
-            hash_pwd = generate_password_hash(password)
-            newuseradd = User(name=name, surname=surname, login=login, password=hash_pwd)
-            try:
-                db.session.add(newuseradd)
-                db.session.commit()
-                return redirect('/')
-            except:
-                flash("Ошибка")
-    else:
-        return render_template('/register.html')
 
 #тут пишем роуты
 
@@ -190,9 +168,20 @@ def index():
     ooo_clients_raz = ooo_company_razoviy.query.order_by(ooo_company_razoviy.id).all()
     fiz_vedenie = fiz_ved.query.order_by(fiz_ved.id).all()
     fiz_razoviy = fiz_raz.query.order_by(fiz_raz.id).all()
+
     return render_template("main.html", ip_clients_ved=ip_clients_ved, ip_clients_raz=ip_clients_raz,
                            ooo_clients_ved=ooo_clients_ved, ooo_clients_raz=ooo_clients_raz, fiz_vedenie=fiz_vedenie,
                            fiz_razoviy=fiz_razoviy)
+
+
+
+@app.route("/debitor", methods=['GET', 'POST'])
+@login_required
+def debitor_app():
+    client_debitor = debitor.query.order_by(debitor.id).all()
+    return render_template("debitor.html", client_debitor=client_debitor)
+
+
 
 
 @app.route("/ip_append", methods=['GET','POST'])
@@ -359,14 +348,77 @@ def fiziki_append():
         return render_template('main.html')
 
 
-
-
-
-
-@app.route('/debitor', methods=['GET', 'POST'])
+@app.route('/debitor_form_append', methods=['GET', 'POST'])
 @login_required
-def debitor():
-    return render_template("debitor.html")
+def debitor_append():
+    if request.method == "POST":
+        if request.form['add_debitor'] == 'add_debit':
+            name_company = request.form['name_company']
+            inn_company = request.form['inn_company']
+            fio_contact = request.form['fio_contact']
+            tel_number = request.form['tel_number']
+            summ_deb = request.form['summ_deb']
+            kvartal = request.form['kvartal']
+            god = request.form['god']
+            comment = request.form['comment']
+            append_deb = debitor(name_company=name_company, inn_company=inn_company, fio_contact=fio_contact, tel_number=tel_number,
+                                 summ_deb=summ_deb, kvartal=kvartal, god=god, comment=comment)
+
+            try:
+                db.session.add(append_deb)
+                db.session.commit()
+                return redirect('/debitor')
+            except:
+                return "При добавлении получилась ошибка"
+    else:
+        return render_template('main.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+
+
+
+#регистрация нового пользователя
+@app.route("/register", methods=["POST", "GET"])
+def register():
+    name = request.form.get("name")
+    surname = request.form.get("surname")
+    login = request.form.get("login")
+    password = request.form.get('password')
+    password2 = request.form.get('password2')
+    if request.method == "POST":
+        if not (name or surname or login or password or password2):
+            flash("Пожалуйста заполните все поля")
+        elif password != password2:
+            flash("Пароли не совпадают")
+        else:
+            hash_pwd = generate_password_hash(password)
+            newuseradd = User(name=name, surname=surname, login=login, password=hash_pwd)
+            try:
+                db.session.add(newuseradd)
+                db.session.commit()
+                return redirect('/')
+            except:
+                flash("Ошибка")
+    else:
+        return render_template('/register.html')
 
 
 @app.after_request
@@ -380,23 +432,6 @@ def add_header(response):
     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
     response.headers['Cache-Control'] = 'public, max-age=0'
     return response
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
