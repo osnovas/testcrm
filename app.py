@@ -13,7 +13,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 manager = LoginManager(app)
 
-#git_pull_dont_work
 
 
 class User(db.Model, UserMixin):
@@ -245,7 +244,6 @@ def ooo_append():
     if request.method == "POST":
         if request.form['add_client_ooo'] == 'add_ooo_ved':
             name_company = request.form['name_company']
-            #kolvo_sotr = request.form['kolvo_sotr']
             inn_company = request.form['inn_company']
             ogrn = request.form['ogrn']
             kpp = request.form['kpp']
@@ -272,7 +270,6 @@ def ooo_append():
 
         elif request.form['add_client_ooo'] == 'add_ooo_raz':
             name_company = request.form['name_company']
-            #kolvo_sotr = request.form['kolvo_sotr']
             inn_company = request.form['inn_company']
             ogrn = request.form['ogrn']
             kpp = request.form['kpp']
@@ -394,6 +391,7 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 
+# Удаляю регистрацию пользователей, что бы извне нельзя было зарегаться
 '''
 #регистрация нового пользователя
 @app.route("/register", methods=["POST", "GET"])
