@@ -394,15 +394,15 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 
-
+'''
 #регистрация нового пользователя
 @app.route("/register", methods=["POST", "GET"])
 def register():
-    #name = request.form.get("name")
-    #surname = request.form.get("surname")
-    #login = request.form.get("login")
-    #password = request.form.get('password')
-    #password2 = request.form.get('password2')
+    name = request.form.get("name")
+    surname = request.form.get("surname")
+    login = request.form.get("login")
+    password = request.form.get('password')
+    password2 = request.form.get('password2')
     if request.method == "POST":
         if not (name or surname or login or password or password2):
             flash("Пожалуйста заполните все поля")
@@ -419,7 +419,7 @@ def register():
                 flash("Ошибка")
     else:
         return render_template('/register.html')
-
+'''
 
 @app.after_request
 def redirect_to_signin(response):
