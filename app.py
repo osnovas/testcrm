@@ -13,7 +13,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 manager = LoginManager(app)
 
-
+# Таблицы БД
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -134,7 +134,7 @@ class debitor(db.Model, UserMixin):
 
 #тут пишем роуты
 
-
+# Страница авторизации
 @app.route('/', methods=['GET','POST'])
 def login():
     login = request.form.get('login')
@@ -153,6 +153,7 @@ def login():
         return render_template('login.html')
 
 
+# Ссылка на logout
 @app.route('/logout',methods=['GET','POST'])
 @login_required
 def logout():
@@ -160,6 +161,7 @@ def logout():
     return redirect(url_for("login"))
 
 
+# Главная страница
 @app.route("/main")
 @login_required
 def index():
@@ -175,7 +177,7 @@ def index():
                            fiz_razoviy=fiz_razoviy)
 
 
-
+# страница добавления должников
 @app.route("/debitor", methods=['GET', 'POST'])
 @login_required
 def debitor_app():
@@ -183,7 +185,7 @@ def debitor_app():
     return render_template("debitor.html", client_debitor=client_debitor)
 
 
-
+# Форма добавления ипэшек
 
 @app.route("/ip_append", methods=['GET','POST'])
 @login_required
@@ -237,7 +239,7 @@ def ip_append():
         return render_template('main.html')
 
 
-
+# Форма добавления OOO
 @app.route("/ooo_append", methods=['GET','POST'])
 @login_required
 def ooo_append():
@@ -297,7 +299,7 @@ def ooo_append():
         return render_template('main.html')
 
 
-
+# Форма добавления Физиков
 
 @app.route("/fiziki_append", methods=['GET','POST'])
 @login_required
@@ -347,6 +349,7 @@ def fiziki_append():
         return render_template('main.html')
 
 
+# Форма добавления ипэшек
 @app.route('/debitor_form_append', methods=['GET', 'POST'])
 @login_required
 def debitor_append():
@@ -419,11 +422,15 @@ def register():
         return render_template('/register.html')
 '''
 
+
+# Эта хрень, перенаправляет пользователя на нужный URL, но только после авторизации. Работает в связке с декоратором @login_required
+# Декоратор @login_required? разрешает вход на страницу, только авторизованным пользователям
 @app.after_request
 def redirect_to_signin(response):
     if response.status_code == 401:
         return redirect(url_for("login") + '?next' + request.url)
     return response
+
 
 def add_header(response):
     """Запрещаяем всяческое кеширование из-за IE и json и модальных окон"""

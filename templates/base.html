@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>ОсноваС</title>
+    <title>Оргтехника Плюс</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -12,25 +12,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='fonts/fontawesome/css/fontawesome-all.min.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='plugins/animation/css/animate.min.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link href="{{ url_for('static', filename='plugins/chart-morris/css/morris.css')}}" rel="stylesheet">
     <title>{% block title  %}{% endblock %}</title>
 
 </head>
 
 
 <body>
-
-    <script>
-        jQuery(function($){
-            $('.date').mask('99-99-9999');
-            $('.phone').mask('+7(999) 999-9999');
-            $('.phoneext').mask("(999) 999-9999? x99999");
-            $(".tin").mask("99-9999999");
-            $(".ssn").mask("999-99-9999");
-            $(".product").mask("a*-999-a999");
-            $(".eyescript").mask("~9.99 ~9.99 999");
-        });
-        </script>
-
     <div class="loader-bg">
         <div class="loader-track">
             <div class="loader-fill"></div>
@@ -121,7 +109,7 @@
         </div>
     </header>
     <!-- [ Header ] end -->
-    {% block body  %}
+    {% block body %}
 
     {% endblock %}
 
@@ -131,7 +119,9 @@
     <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{ url_for('static', filename='js/pcoded.min.js')}}"></script>
 
-
+    <script src="{{ url_for('static', filename='plugins/chart-morris/js/raphael.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='plugins/chart-morris/js/morris.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/pages/chart-morris-custom.js')}}"></script>
 
 
 </body>
