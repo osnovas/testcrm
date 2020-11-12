@@ -4,132 +4,22 @@ from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from database import db
 
 app = Flask(__name__)
 app.secret_key = 'jhzdfjhJGdfjgvJGjgvsdfjhvJGVjvgdfhm'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mainbase.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+#db = SQLAlchemy(app)
+db.init_app(app)
 manager = LoginManager(app)
 
 # Таблицы БД
-
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    surname = db.Column(db.String(50), nullable=False)
-    login = db.Column(db.String(128), nullable=False, unique=True)
-    password = db.Column(db.String(255), nullable=False)
-
-class ip_company_vedenie(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    name_company = db.Column(db.String(255), nullable=False)
-    kolvo_sotr = db.Column(db.String(255), nullable=False)
-    inn_company = db.Column(db.String(50), nullable=False)
-    ogrnip = db.Column(db.String(128), nullable=False, unique=True)
-    fio = db.Column(db.String(255), nullable=False)
-    sis_nalog = db.Column(db.String(10), nullable=False)
-    vid_uslugi = db.Column(db.String(255), nullable=False)
-    vid_rabot = db.Column(db.String(255), nullable=False)
-    tel_number = db.Column(db.String(255), nullable=False)
-    email = db.Column(db.String(255), nullable=False)
-    comment = db.Column(db.Text(500), nullable=False)
-    date_create = db.Column(db.DateTime, default=datetime.utcnow)
-
-class ip_company_razoviy(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    name_company = db.Column(db.String(255), nullable=False)
-    kolvo_sotr = db.Column(db.String(255), nullable=False)
-    inn_company = db.Column(db.String(50), nullable=False)
-    ogrnip = db.Column(db.String(128), nullable=False, unique=True)
-    fio = db.Column(db.String(255), nullable=False)
-    sis_nalog = db.Column(db.String(10), nullable=False)
-    vid_uslugi = db.Column(db.String(255), nullable=False)
-    vid_rabot = db.Column(db.String(255), nullable=False)
-    tel_number = db.Column(db.String(255), nullable=False)
-    email = db.Column(db.String(255), nullable=False)
-    comment = db.Column(db.Text(500), nullable=False)
-    date_create = db.Column(db.DateTime, default=datetime.utcnow)
+from models import User, ip_company_vedenie, ip_company_razoviy, ooo_company_vedenie, ooo_company_razoviy, fiz_ved, fiz_raz, debitor
 
 
 
-class ooo_company_vedenie(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    name_company = db.Column(db.String(255), nullable=False)
-    #kolvo_sotr = db.Column(db.String(255), nullable=False)
-    inn_company = db.Column(db.String(50), nullable=False)
-    ogrn = db.Column(db.String(128), nullable=False, unique=True)
-    kpp = db.Column(db.String(128), nullable=False, unique=True)
-    date_reg = db.Column(db.String(255), nullable=False)
-    fio_gen_dir = db.Column(db.String(255), nullable=False)
-    fio_contact = db.Column(db.String(255), nullable=False)
-    sis_nalog = db.Column(db.String(10), nullable=False)
-    vid_uslugi = db.Column(db.String(255), nullable=False)
-    vid_rabot = db.Column(db.String(255), nullable=False)
-    tel_number = db.Column(db.String(255), nullable=False)
-    email = db.Column(db.String(255), nullable=False)
-    comment = db.Column(db.Text(500), nullable=False)
-    date_create = db.Column(db.DateTime, default=datetime.utcnow)
-
-class ooo_company_razoviy(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    name_company = db.Column(db.String(255), nullable=False)
-    #kolvo_sotr = db.Column(db.String(255), nullable=False)
-    inn_company = db.Column(db.String(50), nullable=False)
-    ogrn = db.Column(db.String(128), nullable=False, unique=True)
-    kpp = db.Column(db.String(128), nullable=False, unique=True)
-    date_reg = db.Column(db.String(255), nullable=False)
-    fio_gen_dir = db.Column(db.String(255), nullable=False)
-    fio_contact = db.Column(db.String(255), nullable=False)
-    sis_nalog = db.Column(db.String(10), nullable=False)
-    vid_uslugi = db.Column(db.String(255), nullable=False)
-    vid_rabot = db.Column(db.String(255), nullable=False)
-    tel_number = db.Column(db.String(255), nullable=False)
-    email = db.Column(db.String(255), nullable=False)
-    comment = db.Column(db.Text(500), nullable=False)
-    date_create = db.Column(db.DateTime, default=datetime.utcnow)
-
-
-class fiz_ved(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    fio = db.Column(db.String(255), nullable=False)
-    passport = db.Column(db.String(255), nullable=False)
-    pass_vidan = db.Column(db.String(255), nullable=False)
-    date_vidan = db.Column(db.String(255), nullable=False)
-    kod_podr = db.Column(db.String(255), nullable=False)
-    fio_contact = db.Column(db.String(255), nullable=False)
-    #vid_uslugi = db.Column(db.String(255), nullable=False)
-    tel_number = db.Column(db.String(255), nullable=False)
-    email = db.Column(db.String(255), nullable=False)
-    comment = db.Column(db.Text(500), nullable=False)
-    date_create = db.Column(db.DateTime, default=datetime.utcnow)
-
-
-class fiz_raz(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    fio = db.Column(db.String(255), nullable=False)
-    passport = db.Column(db.String(255), nullable=False)
-    pass_vidan = db.Column(db.String(255), nullable=False)
-    date_vidan = db.Column(db.String(255), nullable=False)
-    kod_podr = db.Column(db.String(255), nullable=False)
-    fio_contact = db.Column(db.String(255), nullable=False)
-    #vid_uslugi = db.Column(db.String(255), nullable=False)
-    tel_number = db.Column(db.String(255), nullable=False)
-    email = db.Column(db.String(255), nullable=False)
-    comment = db.Column(db.Text(500), nullable=False)
-    date_create = db.Column(db.DateTime, default=datetime.utcnow)
-
-class debitor(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    name_company = db.Column(db.String(255), nullable=False)
-    inn_company = db.Column(db.String(50), nullable=False)
-    fio_contact = db.Column(db.String(255), nullable=False)
-    tel_number = db.Column(db.String(255), nullable=False)
-    summ_deb = db.Column(db.String(50), nullable=False)
-    kvartal = db.Column(db.String(50), nullable=False)
-    god = db.Column(db.String(50), nullable=False)
-    comment = db.Column(db.Text(500), nullable=False)
 
 
 #тут пишем роуты
@@ -137,20 +27,27 @@ class debitor(db.Model, UserMixin):
 # Страница авторизации
 @app.route('/', methods=['GET','POST'])
 def login():
-    login = request.form.get('login')
-    password = request.form.get('password')
-    if login and password:
-        user = User.query.filter_by(login=login).first()
-
-        if check_password_hash(user.password, password):
-            login_user(user)
-            #next_page = request.args.get('next')
-            return redirect("/main")
-        else:
-            flash("Логин или пароль не корректные")
+    if current_user.is_authenticated:
+         return redirect("/main")
     else:
-        flash("Введите логин и пароль")
-        return render_template('login.html')
+        login = request.form.get('login')
+        password = request.form.get('password')
+        if login and password:
+            user = User.query.filter_by(login=login).first()
+            if user:
+                if check_password_hash(user.password, password):
+                    login_user(user)
+                    #next_page = request.args.get('next')
+                    return redirect("/main")
+                else:
+                    #flash("Логин или пароль не корректные")
+                    return render_template('login.html',error="Логин или пароль не корректные")
+            else:
+                #flash("Логин или пароль не корректные")
+                return render_template('login.html',error="Логин или пароль не корректные")
+        else:
+            #flash("Введите логин и пароль")
+            return render_template('login.html')
 
 
 # Ссылка на logout

@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="author" content="CodedThemes"/>
+    <meta name="author" content="CodedThemes" />
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='fonts/fontawesome/css/fontawesome-all.min.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='plugins/animation/css/animate.min.css')}}">
@@ -29,18 +29,20 @@
                 <span class="r s"></span>
                 <span class="r"></span>
             </div>
-
-            <form  method="post" class="card">
+            <form method="post" class="card">
                 <div class="card-body text-center">
                     <div class="mb-4">
                         <i class="feather icon-unlock auth-icon"></i>
                     </div>
                     <h3 class="mb-4">Вход</h3>
+                    {% if error %}
+                    <p class=error><strong>Ошибка:</strong> {{ error }}
+                    {% endif %}
                     <div class="input-group mb-3">
-                        <input type="login" name="login" class="form-control" required placeholder="Логин" >
+                        <input type="login" name="login" class="form-control" required placeholder="Логин">
                     </div>
                     <div class="input-group mb-4">
-                        <input type="password" name="password" class="form-control" required placeholder="Пароль" >
+                        <input type="password" name="password" class="form-control" required placeholder="Пароль">
                     </div>
                     <button class="btn btn-primary shadow-3 mb-4">Войти</button>
                 </div>
@@ -49,4 +51,5 @@
     </div>
 
 </body>
+
 </html>
