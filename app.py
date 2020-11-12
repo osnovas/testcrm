@@ -40,13 +40,10 @@ def login():
                     #next_page = request.args.get('next')
                     return redirect("/main")
                 else:
-                    #flash("Логин или пароль не корректные")
                     return render_template('login.html',error="Логин или пароль не корректные")
             else:
-                #flash("Логин или пароль не корректные")
                 return render_template('login.html',error="Логин или пароль не корректные")
         else:
-            #flash("Введите логин и пароль")
             return render_template('login.html')
 
 
@@ -273,10 +270,16 @@ def debitor_append():
         return render_template('main.html')
 
 
+@app.route('/cassa', methods=['GET', 'POST'])
+@login_required
+def cassa_rashod():
+    return render_template('cassa.html')
 
 
-
-
+@app.route('/asterisk', methods=['GET', 'POST'])
+@login_required
+def asterisk():
+    return render_template('asterisk.html')
 
 
 
