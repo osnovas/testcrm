@@ -322,8 +322,6 @@ def register():
         return render_template('/register.html')
 
 
-# Эта хрень, перенаправляет пользователя на нужный URL, но только после авторизации. Работает в связке с декоратором @login_required
-# Декоратор @login_required? разрешает вход на страницу, только авторизованным пользователям
 @app.after_request
 def redirect_to_signin(response):
     if response.status_code == 401:

@@ -30,7 +30,7 @@
             <div class="navbar-brand header-logo">
                 <a href="main" class="b-brand">
                     <div class="b-bg">
-                        <i class="feather icon-trending-up"></i>
+                        <i class="feather icon-monitor"></i>
                     </div>
                     <span class="b-title">Основа С</span>
                 </a>
@@ -39,7 +39,7 @@
             <div class="navbar-content scroll-div">
                 <ul class="nav pcoded-inner-navbar">
                     <li class="nav-item pcoded-menu-caption">
-                        <label>CRM</label>
+                        <label>Главное меню</label>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project"
                         class="nav-item active">
@@ -61,7 +61,7 @@
                     </li>
                     <li class="nav-item active"
                         data-username="dashboard Default Ecommerce CRM Analytics Crypto Project">
-                        <a class="nav-link " href="cassa"><span class="pcoded-micon"><i
+                        <a class="nav-link " href="asterisk"><span class="pcoded-micon"><i
                                 class="feather icon-phone-call"></i></span><span
                                 class="pcoded-mtext">Телефония</span></a>
                     </li>
@@ -103,6 +103,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
+                {{ current_user.name}} {{current_user.surname}}
                 <li>
                     <div class="dropdown drp-user">
                         <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
