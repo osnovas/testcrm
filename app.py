@@ -295,7 +295,7 @@ def load_user(user_id):
 
 
 # Удаляю регистрацию пользователей, что бы извне нельзя было зарегаться
-'''
+
 #регистрация нового пользователя
 @app.route("/register", methods=["POST", "GET"])
 def register():
@@ -320,7 +320,6 @@ def register():
                 flash("Ошибка")
     else:
         return render_template('/register.html')
-'''
 
 
 # Эта хрень, перенаправляет пользователя на нужный URL, но только после авторизации. Работает в связке с декоратором @login_required
