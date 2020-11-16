@@ -8,13 +8,13 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from database import db
 from datetime import datetime
 
-
+date_now = datetime.fromtimestamp(1576280665)
 
 app = Flask(__name__)
 app.secret_key = 'jhzdfjhJGdfjgvJGjgvsdfjhvJGVjvgdfhm'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mainbase.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-#db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 db.init_app(app)
 manager = LoginManager(app)
 
@@ -102,8 +102,10 @@ def ip_append():
             tel_number = request.form['tel_number']
             email = request.form['email']
             comment = request.form['comment']
-            append_ip = ip_company_vedenie(name_company=name_company, kolvo_sotr=kolvo_sotr, inn_company=inn_company, ogrnip=ogrnip, fio=fio, sis_nalog=sis_nalog,
-                                   vid_uslugi=vid_uslugi, vid_rabot=vid_rabot, tel_number=tel_number, email=email,comment=comment )
+            append_ip = ip_company_vedenie(name_company=name_company, kolvo_sotr=kolvo_sotr, inn_company=inn_company,
+                                           ogrnip=ogrnip, fio=fio, sis_nalog=sis_nalog,
+                                           vid_uslugi=vid_uslugi, vid_rabot=vid_rabot, tel_number=tel_number,
+                                           email=email, comment=comment)
             try:
                 db.session.add(append_ip)
                 db.session.commit()
@@ -340,6 +342,7 @@ def add_header(response):
     response.headers['Cache-Control'] = 'public, max-age=0'
     return response
 
+
 if __name__ == "__main__":
-    #app.run(debug=True)
-    app.run()
+    app.run(debug=True)
+    #app.run()
