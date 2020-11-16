@@ -9,6 +9,52 @@
             <div class="pcoded-inner-content">
                 <!-- [ breadcrumb ] start -->
 
+
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal postupleniya -->
+  <div class="modal fade" id="postupleniya" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Куда идут поступления</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <button type="button" class="btn btn-secondary">На карту</button>
+            <button type="button" class="btn btn-primary">В кассу</button>
+        </div>
+        <div class="modal-footer">
+            Поступления за: {{ now }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal rashod -->
+    <div class="modal fade" id="rashod" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Откуда списываются расходы</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-secondary">С карты</button>
+                <button type="button" class="btn btn-primary">Из кассы</button>
+            </div>
+            <div class="modal-footer">
+                Расходы за: {{ now }}
+            </div>
+          </div>
+        </div>
+      </div>
+
                 <!-- [ breadcrumb ] end -->
                 <div class="main-body">
                     <div class="page-wrapper">
@@ -27,8 +73,7 @@
                                             </div>
 
                                             <div class="col-3 text-right">
-                                                <a href="#"><i
-                                                        class="feather icon-plus-circle text-c-blue f-30 m-r-10"></i></a>
+                                                <a href="#"><i class="feather icon-plus-circle text-c-green f-30 m-r-10" data-toggle="modal" data-target="#postupleniya"> </i></a>
                                             </div>
                                         </div>
 
@@ -48,8 +93,7 @@
                                                 </h3>
                                             </div>
                                             <div class="col-3 text-right">
-                                                <a href="#"><i
-                                                        class="feather icon-plus-circle text-c-blue f-30 m-r-10"></i></a>
+                                                <a href="#"><i class="feather icon-plus-circle text-c-red f-30 m-r-10" data-toggle="modal" data-target="#rashod"></i></a>
                                             </div>
                                         </div>
 

@@ -6,6 +6,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from database import db
+from datetime import datetime
+
+
 
 app = Flask(__name__)
 app.secret_key = 'jhzdfjhJGdfjgvJGjgvsdfjhvJGVjvgdfhm'
@@ -20,7 +23,9 @@ from models import User, ip_company_vedenie, ip_company_razoviy, ooo_company_ved
 
 
 
-
+@app.context_processor
+def inject_now():
+    return {'now': datetime.today().strftime("%d.%m.%Y")}
 
 #тут пишем роуты
 
