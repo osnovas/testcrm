@@ -1,6 +1,5 @@
 #coding: utf-8
-from flask import Flask, render_template, url_for, request, flash, redirect
-from datetime import datetime
+from flask import Flask, render_template, url_for, request, flash, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -8,29 +7,155 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from database import db
 from datetime import datetime
 
-date_now = datetime.fromtimestamp(1576280665)
+# from models import User, ip_company_vedenie, ip_company_razoviy, ooo_company_vedenie, ooo_company_razoviy, fiz_ved, fiz_raz, debitor
+
 
 app = Flask(__name__)
 app.secret_key = 'jhzdfjhJGdfjgvJGjgvsdfjhvJGVjvgdfhm'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mainbase.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# db = SQLAlchemy(app)
+db = SQLAlchemy(app)
 db.init_app(app)
 manager = LoginManager(app)
 
-# Таблицы БД
-from models import User, ip_company_vedenie, ip_company_razoviy, ooo_company_vedenie, ooo_company_razoviy, fiz_ved, fiz_raz, debitor
+date_now = datetime.fromtimestamp(1576280665)
 
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    surname = db.Column(db.String(50), nullable=False)
+    login = db.Column(db.String(128), nullable=False, unique=True)
+    password = db.Column(db.String(255), nullable=False)
+
+
+class ip_company_vedenie(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name_company = db.Column(db.String(255), nullable=False)
+    kolvo_sotr = db.Column(db.String(255), nullable=False)
+    inn_company = db.Column(db.String(50), nullable=False)
+    ogrnip = db.Column(db.String(128), nullable=False, unique=True)
+    fio = db.Column(db.String(255), nullable=False)
+    sis_nalog = db.Column(db.String(10), nullable=False)
+    vid_uslugi = db.Column(db.String(255), nullable=False)
+    vid_rabot = db.Column(db.String(255), nullable=False)
+    tel_number = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
+    date_create = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+class ip_company_razoviy(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name_company = db.Column(db.String(255), nullable=False)
+    kolvo_sotr = db.Column(db.String(255), nullable=False)
+    inn_company = db.Column(db.String(50), nullable=False)
+    ogrnip = db.Column(db.String(128), nullable=False, unique=True)
+    fio = db.Column(db.String(255), nullable=False)
+    sis_nalog = db.Column(db.String(10), nullable=False)
+    vid_uslugi = db.Column(db.String(255), nullable=False)
+    vid_rabot = db.Column(db.String(255), nullable=False)
+    tel_number = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
+    date_create = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+class ooo_company_vedenie(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name_company = db.Column(db.String(255), nullable=False)
+    # kolvo_sotr = db.Column(db.String(255), nullable=False)
+    inn_company = db.Column(db.String(50), nullable=False)
+    ogrn = db.Column(db.String(128), nullable=False, unique=True)
+    kpp = db.Column(db.String(128), nullable=False, unique=True)
+    date_reg = db.Column(db.String(255), nullable=False)
+    fio_gen_dir = db.Column(db.String(255), nullable=False)
+    fio_contact = db.Column(db.String(255), nullable=False)
+    sis_nalog = db.Column(db.String(10), nullable=False)
+    vid_uslugi = db.Column(db.String(255), nullable=False)
+    vid_rabot = db.Column(db.String(255), nullable=False)
+    tel_number = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
+    date_create = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+class ooo_company_razoviy(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name_company = db.Column(db.String(255), nullable=False)
+    # kolvo_sotr = db.Column(db.String(255), nullable=False)
+    inn_company = db.Column(db.String(50), nullable=False)
+    ogrn = db.Column(db.String(128), nullable=False, unique=True)
+    kpp = db.Column(db.String(128), nullable=False, unique=True)
+    date_reg = db.Column(db.String(255), nullable=False)
+    fio_gen_dir = db.Column(db.String(255), nullable=False)
+    fio_contact = db.Column(db.String(255), nullable=False)
+    sis_nalog = db.Column(db.String(10), nullable=False)
+    vid_uslugi = db.Column(db.String(255), nullable=False)
+    vid_rabot = db.Column(db.String(255), nullable=False)
+    tel_number = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
+    date_create = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+class fiz_ved(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    fio = db.Column(db.String(255), nullable=False)
+    passport = db.Column(db.String(255), nullable=False)
+    pass_vidan = db.Column(db.String(255), nullable=False)
+    date_vidan = db.Column(db.String(255), nullable=False)
+    kod_podr = db.Column(db.String(255), nullable=False)
+    fio_contact = db.Column(db.String(255), nullable=False)
+    # vid_uslugi = db.Column(db.String(255), nullable=False)
+    tel_number = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
+    date_create = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+class fiz_raz(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    fio = db.Column(db.String(255), nullable=False)
+    passport = db.Column(db.String(255), nullable=False)
+    pass_vidan = db.Column(db.String(255), nullable=False)
+    date_vidan = db.Column(db.String(255), nullable=False)
+    kod_podr = db.Column(db.String(255), nullable=False)
+    fio_contact = db.Column(db.String(255), nullable=False)
+    # vid_uslugi = db.Column(db.String(255), nullable=False)
+    tel_number = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
+    date_create = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+class debitor(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name_company = db.Column(db.String(255), nullable=False)
+    inn_company = db.Column(db.String(50), nullable=False)
+    fio_contact = db.Column(db.String(255), nullable=False)
+    tel_number = db.Column(db.String(255), nullable=False)
+    summ_deb = db.Column(db.String(50), nullable=False)
+    kvartal = db.Column(db.String(50), nullable=False)
+    god = db.Column(db.String(50), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
+
+
+class cassa(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    to_insert = db.Column(db.String(50), nullable=False)
+    summ_insert = db.Column(db.String(50), nullable=False)
+    where_insert = db.Column(db.String(128), nullable=False, unique=True)
+    comment = db.Column(db.String(255), nullable=False)
 
 
 @app.context_processor
 def inject_now():
     return {'now': datetime.today().strftime("%d.%m.%Y")}
 
-#тут пишем роуты
 
 # Страница авторизации
-@app.route('/', methods=['GET','POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
          return redirect("/main")
@@ -279,8 +404,29 @@ def debitor_append():
 
 @app.route('/cassa', methods=['GET', 'POST'])
 @login_required
-def cassa_rashod():
+def cassa():
     return render_template('cassa.html')
+
+
+@app.route('/cassa_append', methods=['GET', 'POST'])
+@login_required
+def cassa_appends():
+    if request.method == "POST":
+        if request.form['postup'] == 'cassa_postup':
+            to_insert = request.form['to_insert']
+            summ_insert = request.form['summ_insert']
+            where_insert = request.form['where_insert']
+            comment = request.form['comment']
+            cassa_app = cassa(to_insert=to_insert, summ_insert=summ_insert, where_insert=where_insert, comment=comment)
+
+        try:
+            db.session.add(cassa_app)
+            db.session.commit()
+            return redirect('/cassa')
+        except:
+            return "При добавлении получилась ошибка"
+    else:
+        return render_template('cassa.html')
 
 
 @app.route('/asterisk', methods=['GET', 'POST'])
@@ -301,7 +447,6 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 
-# Удаляю регистрацию пользователей, что бы извне нельзя было зарегаться
 
 #регистрация нового пользователя
 @app.route("/register", methods=["POST", "GET"])

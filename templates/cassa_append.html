@@ -1,35 +1,35 @@
 
 <!-- Modal -->
-<div class="modal fade" id="postupleniya" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="postupleniya" role="dialog"
+     tabindex="-1">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Внесение ДС за {{now}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form action="{{ url_for('ooo_append') }}"  method="post">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Внесение ДС за {{now}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Куда внесение</label>
-                    <select class="form-control" name="sis_nalog" id="exampleFormControlSelect1">
-                        <option>Расчетный счет</option>
-                        <option>На карту</option>
-                        <option>Наличка</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Сумма</label>
-                    <input type="text" name="name_company" class="form-control" placeholder="Сумма" required>
+            <div class="modal-body">
+                <form action="cassa_append" method="post">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Куда внесение</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="to_insert">
+                            <option>Расчетный счет</option>
+                            <option>Банковская карта</option>
+                            <option>Наличные в кассе</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Сумма</label>
+                        <input class="form-control" name="summ_insert" placeholder="Сумма" required type="text">
                 </div>
                 
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">За что внесение</label>
-                    <select class="form-control" name="vid_uslugi" id="get_usluga_ooo_vedenie">
+                    <select class="form-control" id="get_usluga_ooo_vedenie" name="where_insert">
                         <option>Возврат</option>
                         <option>Выручка</option>
                         <option>Прочие</option>
@@ -44,7 +44,9 @@
             </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-success">Добавить</button>
+            <button class="btn btn-outline-success" data-toggle="tooltip" name="postup" type="submit"
+                    value="cassa_postup">ДОБАВИТЬ
+            </button>
         </div>
       </div>
     </div>
@@ -53,19 +55,55 @@
 
 <!-- Modal -->
 <div class="modal fade" id="rashod" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Расходы за {{now}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-          <div class="modal-body">
-              ...
-          </div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Расходы за {{now}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="cassa_append" method="post">
+
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Списание из</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="sis_nalog">
+                            <option>Расчетный счет</option>
+                            <option>Банковская карта</option>
+                            <option>Наличные в кассе</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Сумма</label>
+                        <input class="form-control" name="name_company" placeholder="Сумма" required type="text">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">За что списание</label>
+                        <select class="form-control" id="get_usluga_ooo_vedenie" name="vid_uslugi">
+                            <option>Аренда</option>
+                            <option>Покупка и обслуживание оборудования</option>
+                            <option>Хоз. расходы</option>
+                            <option>Связь и интернет</option>
+                            <option>Интернет реклама</option>
+                            <option>Промоутеры</option>
+                            <option>Прочие расходы</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Комментарий</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="comment"
+                                  rows="3"></textarea>
+                    </div>
+
+                </form>
+            </div>
           <div class="modal-footer">
-              <button type="button" class="btn btn-outline-success">Добавить</button>
+              <button class="btn btn-outline-danger" type="button">ДОБАВИТЬ</button>
           </div>
       </div>
     </div>
