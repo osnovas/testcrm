@@ -140,11 +140,19 @@ class debitor(db.Model, UserMixin):
     comment = db.Column(db.Text(500), nullable=False)
 
 
-class Cassa(db.Model, UserMixin):
+class cassa_append(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     to_insert = db.Column(db.String(255), nullable=False)
     summ_insert = db.Column(db.String(255), nullable=False)
     where_insert = db.Column(db.String(255), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
+
+
+class cassa_remove(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    from_remove = db.Column(db.String(255), nullable=False)
+    summ_remove = db.Column(db.String(255), nullable=False)
+    where_remove = db.Column(db.String(255), nullable=False)
     comment = db.Column(db.Text(500), nullable=False)
 
 
@@ -416,7 +424,8 @@ def cassa_append():
             summ_insert = request.form['summ_insert']
             where_insert = request.form['where_insert']
             comment = request.form['comment']
-            cassa_app = Cassa(to_insert=to_insert, summ_insert=summ_insert, where_insert=where_insert, comment=comment)
+            cassa_app = cassa_append(to_insert=to_insert, summ_insert=summ_insert, where_insert=where_insert,
+                                     comment=comment)
 
             try:
                 db.session.add(cassa_app)
@@ -424,6 +433,21 @@ def cassa_append():
                 return redirect('/cassa')
             except:
                 return "При добавлении получилась ошибка"
+        elif request.form["spisanie"] == "cassa_spisanie":
+            from_remove = request.form['from_remove']
+            summ_remove = request.form['summ_remove']
+            where_remove = request.form['where_remove']
+            comment = request.form['comment']
+            cassa_rem = cassa_remove(from_remove=from_remove, summ_remove=summ_remove, where_remove=where_remove,
+                                     comment=comment)
+
+            try:
+                db.session.add(cassa_rem)
+                db.session.commit()
+                return redirect('/cassa')
+            except:
+                return "При добавлении получилась ошибка"
+
     else:
         return render_template('cassa.html')
 
