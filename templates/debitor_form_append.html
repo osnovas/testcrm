@@ -4,16 +4,20 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="col-md-12">
-                <form action="debitor_form_append"  method="post">
+                <form action="{{ url_for('debitor_form_append') }}" method="post">
                     <div class="form-group">
                         <label>Наименование</label>
-                        <input type="text" name="name_company" class="form-control" placeholder="Введите наименование организации">
+                        <input type="text" name="name_company" class="form-control"
+                               placeholder="Введите наименование организации">
                         <label>ИНН</label>
-                        <input type="number" name="inn_company" class="form-control" placeholder="Введите ИНН организации">
+                        <input type="number" name="inn_company" class="form-control"
+                               placeholder="Введите ИНН организации">
                         <label>Контактное лицо</label>
-                        <input type="text" name="fio_contact" class="form-control" placeholder="ФИО Контактного лица" required>
+                        <input type="text" name="fio_contact" class="form-control" placeholder="ФИО Контактного лица"
+                               required>
                         <label>Телефон</label>
-                        <input type="text"  name="tel_number" id="phone" class="form-control phone" placeholder="Телефон" required>
+                        <input type="text" name="tel_number" id="phone" class="form-control phone" placeholder="Телефон"
+                               required>
                         <label>Сумма долга</label>
                         <input type="number" name="summ_deb" class="form-control" placeholder="Общая сумма долга">
                     </div>

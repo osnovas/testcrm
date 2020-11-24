@@ -1,14 +1,13 @@
-#coding: utf-8
+# coding: utf-8
 from flask import Flask, render_template, url_for, request, flash, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from database import db
-from datetime import datetime
-
+# from database import db
 # from models import User, ip_company_vedenie, ip_company_razoviy, ooo_company_vedenie, ooo_company_razoviy, fiz_ved, fiz_raz, debitor
 
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = 'jhzdfjhJGdfjgvJGjgvsdfjhvJGVjvgdfhm'
@@ -141,16 +140,16 @@ class debitor(db.Model, UserMixin):
     comment = db.Column(db.Text(500), nullable=False)
 
 
-class cassa(db.Model, UserMixin):
+class Cassa(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    to_insert = db.Column(db.String(50), nullable=False)
-    summ_insert = db.Column(db.String(50), nullable=False)
-    where_insert = db.Column(db.String(128), nullable=False, unique=True)
-    comment = db.Column(db.String(255), nullable=False)
+    to_insert = db.Column(db.String(255), nullable=False)
+    summ_insert = db.Column(db.String(255), nullable=False)
+    where_insert = db.Column(db.String(255), nullable=False)
+    comment = db.Column(db.Text(500), nullable=False)
 
 
 @app.context_processor
-def inject_now():
+def date_now():
     return {'now': datetime.today().strftime("%d.%m.%Y")}
 
 
@@ -378,7 +377,7 @@ def fiziki_append():
 # Форма добавления ипэшек
 @app.route('/debitor_form_append', methods=['GET', 'POST'])
 @login_required
-def debitor_append():
+def debitor_form_append():
     if request.method == "POST":
         if request.form['add_debitor'] == 'add_debit':
             name_company = request.form['name_company']
@@ -410,21 +409,21 @@ def cassa():
 
 @app.route('/cassa_append', methods=['GET', 'POST'])
 @login_required
-def cassa_appends():
+def cassa_append():
     if request.method == "POST":
         if request.form['postup'] == 'cassa_postup':
             to_insert = request.form['to_insert']
             summ_insert = request.form['summ_insert']
             where_insert = request.form['where_insert']
             comment = request.form['comment']
-            cassa_app = cassa(to_insert=to_insert, summ_insert=summ_insert, where_insert=where_insert, comment=comment)
+            cassa_app = Cassa(to_insert=to_insert, summ_insert=summ_insert, where_insert=where_insert, comment=comment)
 
-        try:
-            db.session.add(cassa_app)
-            db.session.commit()
-            return redirect('/cassa')
-        except:
-            return "При добавлении получилась ошибка"
+            try:
+                db.session.add(cassa_app)
+                db.session.commit()
+                return redirect('/cassa')
+            except:
+                return "При добавлении получилась ошибка"
     else:
         return render_template('cassa.html')
 
