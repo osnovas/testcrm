@@ -39,7 +39,19 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        {% for client in clients %}
                                                         <tr>
+                                                            <th scope="row">1</th>
+                                                            <td>{{ client.name }}</td>
+                                                            <td>{{ client.surname }}</td>
+                                                            <td>{{ client.login }}</td>
+                                                            <td>{{ client.password }}</td>
+                                                            <td>{{ client.id }}</td>
+                                                            <td><button type="button" class="btn btn-square float-right" title="Нажмите, что бы открыть полную карточку" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-question" aria-hidden="true"></i>ПОДРОБНЕЕ</button></td>
+                                                            <td><button type="button" class="btn btn-outline-success float-right" title="Если клиент не ответит на звонок, система автоматически позвонит на следующий номер" data-toggle="tooltip"> <i class="fa fa-phone" aria-hidden="true"></i>ПОЗВОНИТЬ</button></td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                        <!--tr>
                                                             <th scope="row">1</th>
                                                             <td>ООО Ромашка</td>
                                                             <td>63475236534</td>
@@ -68,7 +80,7 @@
                                                             <td>УСН</td>
                                                             <td><button type="button" class="btn btn-square float-right" title="Нажмите, что бы открыть полную карточку" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-question" aria-hidden="true"></i>ПОДРОБНЕЕ</button></td>
                                                             <td><button type="button" class="btn btn-outline-success float-right" title="Если клиент не ответит на звонок, система автоматически позвонит на следующий номер" data-toggle="tooltip"><i class="fa fa-phone" aria-hidden="true"></i>ПОЗВОНИТЬ</button></td>
-                                                        </tr>
+                                                        </tr-->
                                                     </tbody>
                                                 </table>
                                             </div>

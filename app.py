@@ -1,16 +1,26 @@
 #coding: utf-8
-from flask import Flask, render_template, url_for, request, flash, redirect
+from flask import Flask, render_template, url_for, request, flash, redirect, Blueprint
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from clients import *
+import sys
+from models.clients_model import db as root_db
 
 app = Flask(__name__)
+
 app.secret_key = 'jhzdfjhJGdfjgvJGjgvsdfjhvJGVjvgdfhm'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mainbase.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 manager = LoginManager(app)
+
+root_db.init_app(app)
+with app.app_context():
+    root_db.create_all()
+
+app.register_blueprint(clients)
 
 
 class User(db.Model, UserMixin):
@@ -56,17 +66,23 @@ def register():
 
 @app.route('/', methods=['GET','POST'])
 def login():
+    if current_user is not None and current_user.is_authenticated:
+        return redirect("/main")
     login = request.form.get('login')
     password = request.form.get('password')
     if login and password:
         user = User.query.filter_by(login=login).first()
-
-        if check_password_hash(user.password, password):
-            login_user(user)
-            #next_page = request.args.get('next')
-            return redirect("/main")
+        if user is not None:
+            if check_password_hash(user.password, password):
+                login_user(user)
+                #next_page = request.args.get('next')
+                return redirect("/main")
+            else:
+                flash("Логин или пароль не корректные")
+                return render_template('login.html')
         else:
             flash("Логин или пароль не корректные")
+            return render_template('login.html')
     else:
         flash("Введите логин и пароль")
         return render_template('login.html')
@@ -84,10 +100,10 @@ def main_lead_append():
     return render_template("main-lead-append.html")
 
 
-@app.route("/main")
-@login_required
-def index():
-    return render_template("main.html")
+#@app.route("/main")
+#@login_required
+#def index():
+#    return render_template("main.html")
 
 @app.route('/debitor', methods=['GET', 'POST'])
 @login_required

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+{% endblock %}
+
+{% block body %}
+
+    <div class="auth-wrapper">
+        <div class="auth-content">
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>age</th>
+                        <th>option</th>
+                    <tr>
+                </thead>
+                <tbody>
+                    {% for person in people %}
+                    <tr>
+                        <td>{{ person.name }}</td>
+                        <td>{{ person.surname }}</td>
+                        <td>{{ person.login }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
