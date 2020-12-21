@@ -1,0 +1,128 @@
+<!-- [ tabs ] start -->
+<div class="col-sm-12">
+    <h5>Общества с ограниченной ответственностью</h5>
+    <hr>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active text-uppercase" id="home-tab" data-toggle="tab" href="#ooo_vedenie" role="tab"
+                aria-controls="home" aria-selected="true">Ведение</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-uppercase" id="profile-tab" data-toggle="tab" href="#ooo_razoviy" role="tab"
+                aria-controls="profile" aria-selected="false">Разовые</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="ooo_vedenie" role="tabpanel" aria-labelledby="home-tab">
+            <!-- [ Hover-table ] start -->
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <button type="button" class="btn btn-square btn-info float-left" data-toggle="modal"
+                            data-target=".client_ooo_append_vedenie"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить
+                            ведение</button>
+                    </div>
+                    <div class="card-block table-border-style">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Название</th>
+                                        <th>ИНН</th>
+                                        <th>Телефон</th>
+                                        <th>email</th>
+                                        <th>Дата регистрации компании</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for el in ooo_clients_ved %}
+                                    <tr>
+                                        <th scope="row">{{ el.id }}</th>
+                                        <td>{{ el.name_company }}</td>
+                                        <td>{{ el.inn_company }}</td>
+                                        <td>{{ el.tel_number }}</td>
+                                        <td>{{ el.email }}</td>
+                                        <td>{{ el.date_reg }}</td>
+                                        <td><button type="button" class="btn btn-square float-right"
+                                                title="Нажмите, что бы открыть полную карточку" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg"><i class="fa fa-question"
+                                                    aria-hidden="true"></i>ПОДРОБНЕЕ</button>
+                                        </td>
+                                        <td><button type="button" class="btn btn-outline-success float-right"
+                                                title="Если клиент не ответит на звонок, система автоматически позвонит на следующий номер"
+                                                data-toggle="tooltip"> <i class="fa fa-phone"
+                                                    aria-hidden="true"></i>ПОЗВОНИТЬ</button>
+                                        </td>
+                                    </tr>
+                                 {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ Hover-table ] end -->
+        </div>
+
+        <div class="tab-pane fade" id="ooo_razoviy" role="tabpanel" aria-labelledby="profile-tab">
+            <!-- [ Hover-table ] start -->
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <button type="button" class="btn btn-square btn-info float-left" data-toggle="modal"
+                            data-target=".client_ooo_append_razoviy"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить
+                            разовый</button>
+                    </div>
+                    <div class="card-block table-border-style">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Название</th>
+                                        <th>ИНН</th>
+                                        <th>Телефон</th>
+                                        <th>email</th>
+                                        <th>Дата регистрации компании</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for el in ooo_clients_raz %}
+                                    <tr>
+                                        <th scope="row">{{ el.id }}</th>
+                                        <td>{{ el.name_company }}</td>
+                                        <td>{{ el.inn_company }}</td>
+                                        <td>{{ el.tel_number }}</td>
+                                        <td>{{ el.email }}</td>
+                                        <td>{{ el.date_reg }}</td>
+                                        <td><button type="button" class="btn btn-square float-right"
+                                                title="Нажмите, что бы открыть полную карточку" data-toggle="modal"
+                                                data-target=".bd-example-modal-lg"><i class="fa fa-question"
+                                                    aria-hidden="true"></i>ПОДРОБНЕЕ</button>
+                                        </td>
+                                        <td><button type="button" class="btn btn-outline-success float-right"
+                                                title="Если клиент не ответит на звонок, система автоматически позвонит на следующий номер"
+                                                data-toggle="tooltip"> <i class="fa fa-phone"
+                                                    aria-hidden="true"></i>ПОЗВОНИТЬ</button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ Hover-table ] end -->
+        </div>
+    </div>
+</div>
+
+<!--Данная конструкция добавляет всплывающую форму добавления ООО. Эта форма вынесена в отдельный HTML шаблон client_ооо_append-->
+{% include 'ooo_append.html' %}

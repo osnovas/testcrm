@@ -1,0 +1,93 @@
+<!-- Форма добавления клиента физика Ведение-->
+<div class="modal fade client_fizik_append_vedenie" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="col-md-12">
+                <form action="{{ url_for('fiziki_append') }}"  method="post">
+                    <div class="form-group">
+                        <label>ФИО</label>
+                        <input type="text" name="fio" class="form-control" placeholder="Введите ФИО" required>
+
+                        <label>Паспорт</label>
+                        <input type="text" name="passport" class="form-control" placeholder="Серия номер паспорта (000 123321)" required>
+
+                        <label>Кем выдан</label>
+                        <input type="text" name="pass_vidan" class="form-control" placeholder="Кем выдан паспорт" required>
+
+                        <label>Дата выдачи</label>
+                        <input type="text" name="date_vidan" class="form-control date" placeholder="Дата выдачи паспорта" required>
+
+                        <label>Код подразделения</label>
+                        <input type="number" name="kod_podr" class="form-control" placeholder="Код подразделения" required>
+
+                        <label>Контактное лицо</label>
+                        <input type="text" name="fio_contact" class="form-control" placeholder="ФИО Контактного лица" required>
+
+                        <label>Телефон</label>
+                        <input type="text" name="tel_number" class="form-control phone" placeholder="Телефон" required>
+
+                        <label>e-mail</label>
+                        <input type="email" name="email" class="form-control" placeholder="Электронная почта" required>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Комментарий</label>
+                        <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <button type="submit" name="add_client_fiz" value="add_fiz_ved" class="btn btn-square btn-info float-right" title="btn btn-outline-secondary"
+                        data-toggle="tooltip"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Форма добавления физика END-->
+
+<!-- Форма добавления клиента физика разовая-->
+<div class="modal fade client_fizik_append_razoviy" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="col-md-12">
+                <form action="{{ url_for('fiziki_append') }}"  method="post">
+                    <div class="form-group">
+                        <label>ФИО</label>
+                        <input type="text" name="fio" class="form-control" placeholder="Введите ФИО" required>
+
+                        <label>Паспорт</label>
+                        <input type="text" name="passport" class="form-control" placeholder="Серия номер паспорта (000 123321)" required>
+
+                        <label>Кем выдан</label>
+                        <input type="text" name="pass_vidan" class="form-control" placeholder="Кем выдан паспорт" required>
+
+                        <label>Дата выдачи</label>
+                        <input type="text" name="date_vidan" class="form-control date" placeholder="Дата выдачи паспорта" required>
+
+                        <label>Код подразделения</label>
+                        <input type="number" name="kod_podr" class="form-control" placeholder="Код подразделения" required>
+
+                        <label>Контактное лицо</label>
+                        <input type="text" name="fio_contact" class="form-control" placeholder="ФИО Контактного лица" required>
+
+                        <label>Телефон</label>
+                        <input type="text" name="tel_number" class="form-control phone" placeholder="Телефон" required>
+
+                        <label>e-mail</label>
+                        <input type="email" name="email" class="form-control" placeholder="Электронная почта" required>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Комментарий</label>
+                        <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <button type="submit" name="add_client_fiz" value="add_fiz_raz" class="btn btn-square btn-info float-right" title="btn btn-outline-secondary"
+                        data-toggle="tooltip"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Форма добавления физика END-->

@@ -1,0 +1,155 @@
+<!-- Форма добавления клиента ИП на ведение-->
+
+<div class="modal fade client_ip_append_vedenie" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="col-md-12">
+                <form action="{{ url_for('ip_append') }}"  method="post" id="input_value_ip_vedenie">
+                    <div class="form-group">
+                        <label>Наименование</label>
+                        <input type="text" name="name_company" class="form-control" placeholder="Введите наименование ИП" required>
+
+                        <label>Количество сотрудников</label>
+                        <input type="number" name="kolvo_sotr" class="form-control" placeholder="Количество сотрудников в штате                                                                                                                                                                                                                                     " required>
+
+                        <label>ИНН</label>
+                        <input type="number" name="inn_company" class="form-control" placeholder="Введите ИНН" required>
+
+                        <label>ОГРНИП</label>
+                        <input type="number" name="ogrnip" class="form-control" placeholder="Введите ОГРНИП" required>
+
+                        <label>ФИО</label>
+                        <input type="text" name="fio" class="form-control" placeholder="ФИО руководителя" required>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Система налогообложения</label>
+                        <select class="form-control" name="sis_nalog" id="exampleFormControlSelect1">
+                            <option>ОСНО</option>
+                            <option>УСН6</option>
+                            <option>УСН15</option>                                                                                                                                                      
+                            <option>ЕНВД</option>
+                            <option>Патент</option>
+                        </select>
+                    </div>
+                                                
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Вид услуги</label>
+                        <select class="form-control" name="vid_uslugi" id="exampleFormControlSelect1">
+                            <option>Ведение бухгалтерского и налогового учета</option>
+                            <option>3ндфл</option>
+                            <option>Нулеваяя отчетность</option>
+                            <option>Алкогольная отчетность</option>
+                            <option>Восстановление Бух учета</option>
+                            <option>Кадровый учет</option>
+                            <option>Оптимизация налогообложения</option>
+                            <option>Расчет зарплаты</option>
+                            <option>УЧЕТ ИНОСТРАННЫХ РАБОТНИКОВ</option>
+                            <option>УЧЕТ ЭКСПОРТА И ИМПОРТА</option>
+                            <option>РЕШЕНИЕ СЛОЖНЫХ БУХГАЛТЕРСКИХ И НАЛОГОВЫХ ВОПРОСОВ</option>
+                            <option>Регистрация бизнеса под ключ</option>
+                            <option>Внесение и изменение в учередительные документы</option>
+                            <option>Ликвидация и реорганизация бизнеса</option>
+                            <option>Юридическое обслуживание бизнеса</option>
+                        </select>
+                    </div>
+                    <label>Вид деятельности</label>
+                    <input type="text" name="vid_rabot" class="form-control" placeholder="Чем занимается клиент" required>
+                    <label>Телефон</label>
+                    <input type="text" id="phone" name="tel_number" class="form-control phone" placeholder="Телефон" required>
+
+                    <label>e-mail</label>
+                    <input type="email" name="email" class="form-control" placeholder="Электронная почта" required>
+
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Комментарий</label>
+                        <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <button type="submit"  name="add_client_ip" value="add_ip_ved" class="btn btn-square btn-info float-right" title="btn btn-outline-secondary"
+                        data-toggle="tooltip"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Форма добавления должника END-->
+
+
+<!-- Форма добавления клиента ИП разовый-->
+<div class="modal fade client_ip_append_razoviy" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="col-md-12">
+                <form action="{{ url_for('ip_append') }}" method="post" id="input_value_ip_razoviy">
+                    <div class="form-group">
+                        <label>Наименование</label>
+                        <input type="text" name="name_company" class="form-control" placeholder="Введите наименование ИП" required>
+
+                        <label>Количество сотрудников</label>
+                        <input type="number" name="kolvo_sotr" class="form-control" placeholder="Количество сотрудников в штате                                                                                                                                                                                                                                     " required>
+
+                        <label>ИНН</label>
+                        <input type="number" name="inn_company" class="form-control" placeholder="Введите ИНН" required>
+
+                        <label>ОГРНИП</label>
+                        <input type="number" name="ogrnip" class="form-control" placeholder="Введите ОГРНИП" required>
+
+                        <label>ФИО</label>
+                        <input type="text" name="fio" class="form-control" placeholder="ФИО руководителя" required>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Система налогообложения</label>
+                        <select class="form-control" name="sis_nalog" id="exampleFormControlSelect1">
+                            <option>ОСНО</option>
+                            <option>УСН6</option>
+                            <option>УСН15</option>                                                                                                                                                      
+                            <option>ЕНВД</option>
+                            <option>Патент</option>
+                        </select>
+                    </div>
+                                                
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Вид услуги</label>
+                        <select class="form-control" name="vid_uslugi" id="exampleFormControlSelect1">
+                            <option>Ведение бухгалтерского и налогового учета</option>
+                            <option>3ндфл</option>
+                            <option>Нулеваяя отчетность</option>
+                            <option>Алкогольная отчетность</option>
+                            <option>Восстановление Бух учета</option>
+                            <option>Кадровый учет</option>
+                            <option>Оптимизация налогообложения</option>
+                            <option>Расчет зарплаты</option>
+                            <option>УЧЕТ ИНОСТРАННЫХ РАБОТНИКОВ</option>
+                            <option>УЧЕТ ЭКСПОРТА И ИМПОРТА</option>
+                            <option>РЕШЕНИЕ СЛОЖНЫХ БУХГАЛТЕРСКИХ И НАЛОГОВЫХ ВОПРОСОВ</option>
+                            <option>Регистрация бизнеса под ключ</option>
+                            <option>Внесение и изменение в учередительные документы</option>
+                            <option>Ликвидация и реорганизация бизнеса</option>
+                            <option>Юридическое обслуживание бизнеса</option>
+                        </select>
+                    </div>
+                    <label>Вид деятельности</label>
+                    <input type="text"  name="vid_rabot" class="form-control" placeholder="Чем занимается клиент" required>
+                    <label>Телефон</label>
+                    <input type="text" id="phone" name="tel_number" class="form-control phone" placeholder="Телефон" required>
+
+                    <label>e-mail</label>
+                    <input type="email" name="email" class="form-control" placeholder="Электронная почта" required>
+
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Комментарий</label>
+                        <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <button type="submit"  name="add_client_ip" value="add_ip_raz" class="btn btn-square btn-info float-right" title="btn btn-outline-secondary"
+                        data-toggle="tooltip"> <i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Форма добавления должника END-->

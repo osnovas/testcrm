@@ -1,0 +1,117 @@
+<!-- Modal -->
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade postupleniya" id="postupleniya"
+     role="dialog"
+     tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Внесение ДС за {{now}}</h5>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form action="{{ url_for('cassa_append') }}" method="post">
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Куда внесение</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="to_insert">
+              <option>Расчетный счет</option>
+              <option>Банковская карта</option>
+              <option>Наличные в кассе</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Сумма</label>
+            <input class="form-control" name="summ_insert" placeholder="Сумма" required type="text">
+          </div>
+
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">За что внесение</label>
+            <select class="form-control" name="where_insert">
+              <option>Возврат</option>
+              <option>Выручка</option>
+              <option>Прочие</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Комментарий</label>
+            <textarea class="form-control" name="comment" rows="3"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-success" data-toggle="tooltip" name="postup" type="submit"
+                    value="cassa_postup">ДОБАВИТЬ
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div aria-hidden="true" class="modal fade rashod" id="rashod" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Расходы за {{now}}</h5>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ url_for('cassa_append') }}" method="post">
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Списание из</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="from_remove">
+              <option>Расчетный счет</option>
+              <option>Банковская карта</option>
+              <option>Наличные в кассе</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Сумма</label>
+            <input class="form-control" name="summ_remove" placeholder="Сумма" required type="text">
+          </div>
+
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">За что списание</label>
+            <select class="form-control" name="where_remove">
+              <option>Аренда</option>
+              <option>Покупка и обслуживание оборудования</option>
+              <option>Хоз. расходы</option>
+              <option>Связь и интернет</option>
+              <option>Интернет реклама</option>
+              <option>Почта</option>
+              <option>Промоутеры</option>
+              <option>Прочие расходы</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Комментарий</label>
+            <textarea class="form-control" name="comment_from" rows="3"></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-outline-danger" data-toggle="tooltip" name="spisanie" type="submit"
+                    value="cassa_spisanie">ДОБАВИТЬ
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  .modal-xl {
+    max-width: 90% !important;
+  }
+</style>

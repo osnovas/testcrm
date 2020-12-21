@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+
+{% block body %}
+
+{% include 'cassa_append.html' %}
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!-- [ breadcrumb ] start -->
+
+                <!-- [ breadcrumb ] end -->
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <!-- [ Main Content ] start. Этот класс нельзя удалять, так как не будет работать сдвижение экрана -->
+                        <div class="row">
+                            <!--[ daily sales section ] start-->
+                            <div class="col-md-6 col-xl-4">
+                                <div class="card daily-sales">
+                                    <div class="card-block">
+                                        <h6 class="mb-4">Поступления Сегодня</h6>
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-9">
+                                                <h3 class="f-w-300 d-flex align-items-center m-b-0"><i
+                                                        class="feather icon-arrow-up text-c-green f-30 m-r-10"></i>249.95
+                                                </h3>
+                                            </div>
+
+                                            <div class="col-3 text-right">
+                                                <a href="#"><i class="feather icon-plus-circle text-c-green f-30 m-r-10"
+                                                               data-target="#postupleniya" data-toggle="modal"></i></a>
+                                            </div>
+                                            </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--[ daily sales section ] end-->
+                            <!--[ Monthly  sales section ] starts-->
+                            <div class="col-md-6 col-xl-4">
+                                <div class="card Monthly-sales">
+                                    <div class="card-block">
+                                        <h6 class="mb-4">Расходы сегодня</h6>
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-9">
+                                                <h3 class="f-w-300 d-flex align-items-center  m-b-0"><i
+                                                        class="feather icon-arrow-down text-c-red f-30 m-r-10"></i>2.942.32
+                                                </h3>
+                                            </div>
+                                            <div class="col-3 text-right">
+                                                <a href="#"><i class="feather icon-plus-circle text-c-red f-30 m-r-10"
+                                                               data-target="#rashod" data-toggle="modal"></i></a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--[ Monthly  sales section ] end-->
+                            <!--[ year  sales section ] starts-->
+                            <div class="col-md-12 col-xl-4">
+                                <div class="card yearly-sales">
+                                    <div class="card-block">
+                                        <h6 class="mb-4">Итого за сегодня:</h6>
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-9">
+                                                <h3 class="f-w-300 d-flex align-items-center  m-b-0"> 8.638.32</h3>
+                                            </div>
+                                            <div class="col-3 text-right">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--[ year  sales section ] end-->
+                            <!-- [ Main Content ] end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+
+
+    {% endblock %}
